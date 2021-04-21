@@ -157,7 +157,7 @@ io.popen("mkdir File_Bot")
 io.popen("cd File_Bot && rm -rf commands.lua.1") 
 io.popen("cd File_Bot && rm -rf commands.lua.2") 
 io.popen("cd File_Bot && rm -rf commands.lua.3") 
-io.popen("cd File_Bot && wget https://raw.githubusercontent.com/TELANDTEAM/Files_TELAND/master/File_Bot/commands.lua") 
+io.popen("cd File_Bot && wget https://raw.githubusercontent.com/TELANDTEAM/Files_Teland/main/File_Bot/commands.lua") 
 t = "\27[35m".."\nAll Files Started : \n____________________\n"..'\27[m'
 i = 0
 for v in io.popen('ls File_Bot'):lines() do
@@ -1049,12 +1049,12 @@ end
 if text == 'تحديث السورس ❃' and DevTELANDW(msg) then 
 os.execute('rm -rf TELAND.lua')
 os.execute('wget https://raw.githubusercontent.com/TELANDTEAM/TELAND/main/TELAND.lua')
-send(msg.chat_id_, msg.id_,' ❃∫ تم تحديث السورس \n ❃∫ لديك اخر اصدار لسورس بويكا\n ❃∫ الاصدار » { 1.3v}')
+send(msg.chat_id_, msg.id_,' ❃∫ تم تحديث السورس \n ❃∫ لديك اخر اصدار لسورس تيلاند\n ❃∫ الاصدار » { 1.3v}')
 dofile('TELAND.lua')  
 end
 if text == 'الاصدار ❃' and DevTELANDW(msg) then 
 database:del(bot_id..'Srt:Bot') 
-send(msg.chat_id_, msg.id_,' ❃∫ اصدار سورس بويكا \n ❃∫ الاصدار »{ 1.3v}')
+send(msg.chat_id_, msg.id_,' ❃∫ اصدار سورس تيلاند \n ❃∫ الاصدار »{ 1.3v}')
 end
 if text == 'قناه تحديثات البوت ❃' and DevTELANDW(msg) then 
 database:del(bot_id..'Srt:Bot') 
@@ -2300,7 +2300,7 @@ return false
 end
 os.execute('rm -rf TELAND.lua')
 os.execute('wget https://raw.githubusercontent.com/TELANDTEAM/TELAND/main/TELAND.lua')
-send(msg.chat_id_, msg.id_,' ❃∫ تم تحديث السورس \n ❃∫ لديك اخر اصدار لسورس بويكا\n ❃∫ الاصدار » { 1.3v}')
+send(msg.chat_id_, msg.id_,' ❃∫ تم تحديث السورس \n ❃∫ لديك اخر اصدار لسورس تيلاند\n ❃∫ الاصدار » { 1.3v}')
 dofile('TELAND.lua')  
 end
 
@@ -3844,7 +3844,7 @@ end,nil)
 end
 end
 if text == 'الملفات' and DevTELANDW(msg) then
-t = ' ❃∫ ملفات السورس بويكا ↓\n≪━━━━━━𝘽𝙆━━━━━━≫ \n'
+t = ' ❃∫ ملفات السورس تيلاند ↓\n≪━━━━━━𝘽𝙆━━━━━━≫ \n'
 i = 0
 for v in io.popen('ls File_Bot'):lines() do
 if v:match(".lua$") then
@@ -3856,13 +3856,13 @@ send(msg.chat_id_, msg.id_,t)
 end
 if text == "متجر الملفات" or text == 'المتجر' then
 if DevTELANDW(msg) then
-local Get_Files, res = https.request("https://raw.githubusercontent.com/TELANDTEAM/Files_TELAND/master/getfile.json")
+local Get_Files, res = https.request("https://raw.githubusercontent.com/TELANDTEAM/Files_Teland/main/getfile.json")
 if res == 200 then
 local Get_info, res = pcall(JSON.decode,Get_Files);
 vardump(res.plugins_)
 if Get_info then
-local TextS = "\n ❃∫ اهلا بك في متجر ملفات بويكا\n ❃∫ ملفات السورس ↓\n≪━━━━━━𝘽𝙆━━━━━━≫\n\n"
-local TextE = "\n≪━━━━━━𝘽𝙆━━━━━━≫\n ❃∫ علامة تعني { ✓ } ملف مفعل\n ❃∫ علامة تعني { ✘ } ملف معطل\n ❃∫ قناة سورس بويكا ↓\n".." ❃∫ [اضغط هنا لدخول](t.me/IIIS1) \n"
+local TextS = "\n ❃∫ اهلا بك في متجر ملفات تيلاند\n ❃∫ ملفات السورس ↓\n≪━━━━━━𝘽𝙆━━━━━━≫\n\n"
+local TextE = "\n≪━━━━━━𝘽𝙆━━━━━━≫\n ❃∫ علامة تعني { ✓ } ملف مفعل\n ❃∫ علامة تعني { ✘ } ملف معطل\n ❃∫ قناة سورس تيلاند ↓\n".." ❃∫ [اضغط هنا لدخول](t.me/IIIS1) \n"
 local NumFile = 0
 for name,Info in pairs(res.plugins_) do
 local Check_File_is_Found = io.open("File_Bot/"..name,"r")
@@ -3894,13 +3894,13 @@ t = " ❃∫ الملف » "..file.."\n ❃∫ تم تعطيل ملف \n"
 else
 t = " ❃∫ بالتاكيد تم تعطيل ملف → "..file.."\n"
 end
-local json_file, res = https.request("https://raw.githubusercontent.com/TELANDTEAM/Files_TELAND/master/File_Bot/"..file)
+local json_file, res = https.request("https://raw.githubusercontent.com/TELANDTEAM/Files_Teland/main/File_Bot/"..file)
 if res == 200 then
 os.execute("rm -fr File_Bot/"..file)
 send(msg.chat_id_, msg.id_,t) 
 dofile('TELAND.lua')  
 else
-send(msg.chat_id_, msg.id_," ❃∫ عذرا الملف لايدعم سورس بويكا \n") 
+send(msg.chat_id_, msg.id_," ❃∫ عذرا الملف لايدعم سورس تيلاند \n") 
 end
 return false
 end
@@ -3914,7 +3914,7 @@ t = " ❃∫ بالتاكيد تم تفعيل ملف → "..file.." \n"
 else
 t = " ❃∫ الملف » "..file.."\n ❃∫ تم تفعيل ملف \n"
 end
-local json_file, res = https.request("https://raw.githubusercontent.com/TELANDTEAM/Files_TELAND/master/File_Bot/"..file)
+local json_file, res = https.request("https://raw.githubusercontent.com/TELANDTEAM/Files_Teland/main/File_Bot/"..file)
 if res == 200 then
 local chek = io.open("File_Bot/"..file,'w+')
 chek:write(json_file)
@@ -3922,7 +3922,7 @@ chek:close()
 send(msg.chat_id_, msg.id_,t) 
 dofile('TELAND.lua')  
 else
-send(msg.chat_id_, msg.id_," ❃∫ عذرا الملف لايدعم سورس بويكا \n") 
+send(msg.chat_id_, msg.id_," ❃∫ عذرا الملف لايدعم سورس تيلاند \n") 
 end
 return false
 end
@@ -8727,8 +8727,8 @@ end
 return false
 end
 
-if text == ""..(database:get(bot_id..'Name:Bot') or 'بويكا').."" then  
-Namebot = (database:get(bot_id..'Name:Bot') or 'بويكا')
+if text == ""..(database:get(bot_id..'Name:Bot') or 'تيلاند').."" then  
+Namebot = (database:get(bot_id..'Name:Bot') or 'تيلاند')
 local TELAND_Msg = {
 'عمغي 🥺💕.',
 'هاا شتريد كافي ☹️.',
@@ -9328,7 +9328,7 @@ end
 end
 end
 -------------------------------
-if text == ""..(database:get(bot_id..'Name:Bot') or 'بويكا').." غادر" or text == 'غادر' then  
+if text == ""..(database:get(bot_id..'Name:Bot') or 'تيلاند').." غادر" or text == 'غادر' then  
 if Sudo(msg) and not database:get(bot_id..'Left:Bot'..msg.chat_id_)  then 
 tdcli_function ({ID = "ChangeChatMemberStatus",chat_id_=msg.chat_id_,user_id_=bot_id,status_={ID = "ChatMemberStatusLeft"},},function(e,g) end, nil) 
 send(msg.chat_id_, msg.id_,'❃∫ تم مغادرة المجموعه') 
@@ -9337,7 +9337,7 @@ end
 return false  
 end
 if text == 'بوت' then
-Namebot = (database:get(bot_id..'Name:Bot') or 'بويكا')
+Namebot = (database:get(bot_id..'Name:Bot') or 'تيلاند')
 send(msg.chat_id_, msg.id_,'اسمي ['..Namebot..'] ')
 end
 if text == 'الاحصائيات' then
@@ -10711,7 +10711,7 @@ if (text and text == "تفعيل اوامر التحشيش") then
 send(msg.chat_id_, msg.id_, '  ❃∫ تم تفعيل اوامر التحشيش')
 database:del(bot_id.."Fun_Bots:"..msg.chat_id_)
 end
-local Name_Bot = (database:get(bot_id..'Name:Bot') or 'بويكا')
+local Name_Bot = (database:get(bot_id..'Name:Bot') or 'تيلاند')
 if not database:get(bot_id.."Fun_Bots:"..msg.chat_id_) then
 if text ==  ""..Name_Bot..' شنو رئيك بهاذا' and tonumber(msg.reply_to_message_id_) > 0 then     
 function FunBot(extra, result, success) 
