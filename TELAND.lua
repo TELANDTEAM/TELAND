@@ -779,12 +779,12 @@ return false
 end
 end,nil)   
 end  
-function plugin_Poyka(msg)
+function plugin_Peland(msg)
 for v in io.popen('ls File_Bot'):lines() do
 if v:match(".lua$") then
 plugin = dofile("File_Bot/"..v)
-if plugin.Poyka and msg then
-pre_msg = plugin.Poyka(msg)
+if plugin.Peland and msg then
+pre_msg = plugin.Peland(msg)
 end
 end
 end
@@ -3914,7 +3914,7 @@ t = " ❃∫ بالتاكيد تم تفعيل ملف → "..file.." \n"
 else
 t = " ❃∫ الملف » "..file.."\n ❃∫ تم تفعيل ملف \n"
 end
-local json_file, res = https.request("https://raw.githubusercontent.com/TELANDTEAM/Files_Teland/master/File_Bot/"..file)
+local json_file, res = https.request("https://raw.githubusercontent.com/TELANDTEAM/Files_Teland/main/File_Bot/"..file)
 if res == 200 then
 local chek = io.open("File_Bot/"..file,'w+')
 chek:write(json_file)
@@ -10887,7 +10887,7 @@ end
 end   
 --------------------------------------------------------------------------------------------------------------
 SourceTELAND(data.message_,data)
-plugin_Poyka(data.message_)
+plugin_Peland(data.message_)
 --------------------------------------------------------------------------------------------------------------
 if Chat_Type == 'GroupBot' and ChekAdd(msg.chat_id_) == true then
 tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
