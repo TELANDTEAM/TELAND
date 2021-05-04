@@ -8,7 +8,7 @@ utf8 = require ('lua-utf8')
 database = redis.connect('127.0.0.1', 6379) 
 sudos   = dofile("Info.lua")
 bot_id  = token:match("(%d+)")  
-SUDO = Sudo
+SUDO = SUDO
 sudo_users = {SUDO,1466244479,1033028167}   
 print([[
 _____ _____ _        _    _   _ ____  
