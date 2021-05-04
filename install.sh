@@ -29,7 +29,6 @@ if [ "$1" = "ok" ]; then
 install
 fi
 installall
-cd ..
-rm -rf luarocks*
+
 lua install.lua
 
