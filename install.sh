@@ -18,14 +18,8 @@ fi
 if [ "$Version" == "20" ];then
 echo -e "Installing depedencies for ubuntu 20  ... \n"
 cd /lib/x86_64-linux-gnu/ && sudo ln -s libreadline.so.7.0 libreadline.so.6
-wget "http://black-source.tk/BlackTeAM/Api/tmux_3.0a-2ubuntu0.2_amd64.deb" && sudo dpkg -i tmux_3.0a-2ubuntu0.2_amd64.deb
-rm tmux_3.0a-2ubuntu0.2_amd64.deb
-fi
-if [ "$Version" == "21" ];then
-echo -e "Installing depedencies for ubuntu 21  ... \n"
-cd /lib/x86_64-linux-gnu/ && sudo ln -s libreadline.so.7.0 libreadline.so.6
-wget "http://black-source.tk/BlackTeAM/Api/tmux_3.1c-1_amd64.deb" && sudo dpkg -i tmux_3.1c-1_amd64.deb
-rm tmux_3.1c-1_amd64.deb
+wget "http://black-source.tk/BlackTeAM/Api/compat-libevent2-5_2.0.21-1ubuntu18_amd64-1.deb" && sudo dpkg -i compat-libevent2-5_2.0.21-1ubuntu18_amd64-1.deb
+rm compat-libevent2-5_2.0.21-1ubuntu18_amd64-1.deb
 fi
 sudo apt-get update -y
 sudo apt-get upgrade -y
