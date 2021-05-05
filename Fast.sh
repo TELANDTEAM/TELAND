@@ -7,10 +7,8 @@ chmod +x TELAND
 chmod +x Run
 ./Run
 }
-
 if [ "$1" = "ok" ]; then
 install
 fi
 chmod +x install.sh
-
 lua install.lua
