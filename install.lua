@@ -90,7 +90,7 @@ done
 RunTs:close()
 end
 Files_Info_Get()
-database:del(Server_Done.."Token_Write");database:del(Server_Done.."UserSudo_Write")
+database:del(Server_Done.."User_Write");database:del(Server_Done.."Token_Write");database:del(Server_Done.."UserSudo_Write")
 sudos = dofile('Info.lua')
 os.execute('./install.sh ok')
 end 
