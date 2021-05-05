@@ -1,4 +1,3 @@
-#!/usr/bin/env bash
 cd $HOME/TELAND
 rm -rf $HOME/.telegram-cli
 install() {
