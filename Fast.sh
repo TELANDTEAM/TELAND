@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 cd $HOME/TELAND
+rm -rf $HOME/.telegram-cli
 install() {
 rm -rf $HOME/.telegram-cli
 sudo chmod +x tg
