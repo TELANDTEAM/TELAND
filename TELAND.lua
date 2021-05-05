@@ -732,7 +732,6 @@ end
 if DevTELANDW(msg) then
 local bl = ' *⌯︙اهلا عزيزي آلمـطـور*\n*⌯︙آنت آلمـطـور آلآسـآسـي للبوت*\n┉  ┉  ┉  ┉  ┉  ┉  ┉  ┉ء\n*⌯︙تسـتطـيع‌‏ آلتحگم باوامر البوت*\n*⌯︙من خلاال الكيبورت خاص بك*\n*⌯︙قناة سورس البوت *[اضغط هنا](t.me/IIIS1)'
 local keyboard = {
-    {'تغيير المطور الاساسي ⌯'},
 {'الاحصائيات ⌯','قناه تحديثات البوت ⌯'},
 {'تعطيل التواصل ⌯','تفعيل التواصل ⌯'},
 {'ضع اسم للبوت ⌯','المطورين ⌯','قائمه العام ⌯'},
@@ -748,6 +747,7 @@ local keyboard = {
 {'تفعيل البوت الخدمي ⌯','تعطيل البوت الخدمي ⌯'},
 {'تنظيف الكروبات ⌯','تنظيف المشتركين ⌯'},
 {'تفعيل النسخه التلقائيه ⌯','تعطيل النسخه التلقائيه ⌯'},
+{'تغيير المطور الاساسي ⌯'}, 
 {'جلب نسخه الاحتياطيه ⌯'},
 {'تحديث السورس ⌯','الاصدار ⌯'},
 {'معلومات السيرفر ⌯'},
@@ -8633,7 +8633,7 @@ send(msg.chat_id_,msg.id_,'*⌯︙تم حذف {'..num..'}*')
 database:setex(bot_id..'VVVZVV:Delete:Time'..msg.chat_id_..':'..msg.sender_user_id_,300,true)
 end
 end
-if text == "امسح" and BasicConstructor(msg) then
+if text == "تنظيف الميديا" and BasicConstructor(msg) then
 msgm = {[0]=msg.id_}
 local Message = msg.id_
 for i=1,200 do
@@ -8968,7 +8968,7 @@ end
 
 if text == ("ردود المطور") and DevTELANDW(msg) then 
 local list = database:smembers(bot_id..'List:Rd:Sudo')
-text = "\n *⌯︙قائمة ردود المطور* \n*•━━━━━━ 𝗧𝗘 ━━━━━━━•*\n"
+text = "\n ⌯︙قائمة ردود المطور \n*•━━━━━━ 𝗧𝗘 ━━━━━━━•*\n"
 for k,v in pairs(list) do
 if database:get(bot_id.."Add:Rd:Sudo:Gif"..v) then
 db = 'متحركه'
@@ -8990,7 +8990,7 @@ end
 text = text..""..k.." >> ("..v..") » {"..db.."}\n"
 end
 if #list == 0 then
-text = " *⌯︙لا يوجد ردود للمطور*"
+text = " ⌯︙لا يوجد ردود للمطور"
 end
 send(msg.chat_id_, msg.id_,'['..text..']')
 end
@@ -9137,21 +9137,21 @@ end
 end
 end
 if text and text:match("^(.*)$") then
-if database:get(bot_id.."botss:MeRo:Set:Rd"..msg.sender_user_id_..":"..msg.chat_id_) == "true" then
+if database:get(bot_id.."botss:Amir:Set:Rd"..msg.sender_user_id_..":"..msg.chat_id_) == "true" then
 send(msg.chat_id_, msg.id_, '\n*⌯︙ارسل الكلمه تريد اضافتها*')
-database:set(bot_id.."botss:MeRo:Set:Rd"..msg.sender_user_id_..":"..msg.chat_id_, "true1")
-database:set(bot_id.."botss:MeRo:Text:Sudo:Bot"..msg.sender_user_id_..":"..msg.chat_id_, text)
-database:sadd(bot_id.."botss:MeRo:List:Rd:Sudo", text)
+database:set(bot_id.."botss:Amir:Set:Rd"..msg.sender_user_id_..":"..msg.chat_id_, "true1")
+database:set(bot_id.."botss:Amir:Text:Sudo:Bot"..msg.sender_user_id_..":"..msg.chat_id_, text)
+database:sadd(bot_id.."botss:Amir:List:Rd:Sudo", text)
 return false end
 end
 if text and text:match("^(.*)$") then
-if database:get(bot_id.."botss:MeRo:Set:On"..msg.sender_user_id_..":"..msg.chat_id_) == "true" then
+if database:get(bot_id.."botss:Amir:Set:On"..msg.sender_user_id_..":"..msg.chat_id_) == "true" then
 send(msg.chat_id_, msg.id_,"*⌯︙تم حذف الرد من ردود المتعدده*")
-database:del(bot_id..'botss:MeRo:Add:Rd:Sudo:Text'..text)
-database:del(bot_id..'botss:MeRo:Add:Rd:Sudo:Text1'..text)
-database:del(bot_id..'botss:MeRo:Add:Rd:Sudo:Text2'..text)
-database:del(bot_id.."botss:MeRo:Set:On"..msg.sender_user_id_..":"..msg.chat_id_)
-database:srem(bot_id.."botss:MeRo:List:Rd:Sudo", text)
+database:del(bot_id..'botss:Amir:Add:Rd:Sudo:Text'..text)
+database:del(bot_id..'botss:Amir:Add:Rd:Sudo:Text1'..text)
+database:del(bot_id..'botss:Amir:Add:Rd:Sudo:Text2'..text)
+database:del(bot_id.."botss:Amir:Set:On"..msg.sender_user_id_..":"..msg.chat_id_)
+database:srem(bot_id.."botss:Amir:List:Rd:Sudo", text)
 return false
 end
 end
@@ -9165,12 +9165,12 @@ send(msg.chat_id_, msg.id_,'  *⌯︙عذࢪا عليڪ الاشتࢪاڪ في �
 end
 return false
 end
-local list = database:smembers(bot_id.."botss:MeRo:List:Rd:Sudo")
+local list = database:smembers(bot_id.."botss:Amir:List:Rd:Sudo")
 for k,v in pairs(list) do  
-database:del(bot_id.."botss:MeRo:Add:Rd:Sudo:Text"..v) 
-database:del(bot_id.."botss:MeRo:Add:Rd:Sudo:Text1"..v) 
-database:del(bot_id.."botss:MeRo:Add:Rd:Sudo:Text2"..v)   
-database:del(bot_id.."botss:MeRo:List:Rd:Sudo")
+database:del(bot_id.."botss:Amir:Add:Rd:Sudo:Text"..v) 
+database:del(bot_id.."botss:Amir:Add:Rd:Sudo:Text1"..v) 
+database:del(bot_id.."botss:Amir:Add:Rd:Sudo:Text2"..v)   
+database:del(bot_id.."botss:Amir:List:Rd:Sudo")
 end
 send(msg.chat_id_, msg.id_,"*⌯︙تم حذف ردود المتعدده*")
 end
@@ -9192,7 +9192,7 @@ end
 
 if text == ("ردود المدير") and Manager(msg) then
 local list = database:smembers(bot_id..'List:Manager'..msg.chat_id_..'')
-text = " *⌯︙قائمه ردود المدير* \n*•━━━━━━ 𝗧𝗘 ━━━━━━━•*\n"
+text = " ⌯︙قائمه ردود المدير \n*•━━━━━━ 𝗧𝗘 ━━━━━━━•*\n"
 for k,v in pairs(list) do
 if database:get(bot_id.."Add:Rd:Manager:Gif"..v..msg.chat_id_) then
 db = 'متحركه'
@@ -9214,7 +9214,7 @@ end
 text = text..""..k..">> ("..v..") » {"..db.."}\n"
 end
 if #list == 0 then
-text = " *⌯︙لا يوجد ردود للمدير*"
+text = " ⌯︙لا يوجد ردود للمدير"
 end
 send(msg.chat_id_, msg.id_,'['..text..']')
 end
@@ -9423,11 +9423,11 @@ send(msg.chat_id_, msg.id_,'  *⌯︙عذࢪا عليڪ الاشتࢪاڪ في �
 end
 return false
 end
-local list = database:smembers(bot_id.."botss:MeRo:List:Rd:Sudo")
-text = "\nقائمة ردود المتعدده\n⊶─────≺⋆≻─────⊷\n"
+local list = database:smembers(bot_id.."botss:Amir:List:Rd:Sudo")
+text = "\nقائمة ردود المتعدده\n*ٴ•━━━━━━ 𝗧𝗘 ━━━━━━━•*\n"
 for k,v in pairs(list) do
 db = "رساله "
-text = text..""..k.." => {"..v.."} => {"..db.."}\n"
+text = text..""..k.." >> {"..v.."} >> {"..db.."}\n"
 end
 if #list == 0 then
 text = "لا توجد ردود متعدده"
@@ -9444,7 +9444,7 @@ send(msg.chat_id_, msg.id_,'  *⌯︙عذࢪا عليڪ الاشتࢪاڪ في �
 end
 return false
 end
-database:set(bot_id.."botss:MeRo:Set:Rd"..msg.sender_user_id_..":"..msg.chat_id_,true)
+database:set(bot_id.."botss:Amir:Set:Rd"..msg.sender_user_id_..":"..msg.chat_id_,true)
 return send(msg.chat_id_, msg.id_,"*⌯︙ارسل الرد الذي اريد اضافته*")
 end
 if text == "حذف رد متعدد" and CoSu(msg) then
@@ -9457,58 +9457,58 @@ send(msg.chat_id_, msg.id_,'  *⌯︙عذࢪا عليڪ الاشتࢪاڪ في �
 end
 return false
 end
-database:set(bot_id.."botss:MeRo:Set:On"..msg.sender_user_id_..":"..msg.chat_id_,true)
+database:set(bot_id.."botss:Amir:Set:On"..msg.sender_user_id_..":"..msg.chat_id_,true)
 return send(msg.chat_id_, msg.id_,"*⌯︙ارسل الان الكلمه لحذفها*")
 end
 if text then  
-local test = database:get(bot_id.."botss:MeRo:Text:Sudo:Bot"..msg.sender_user_id_..":"..msg.chat_id_)
-if database:get(bot_id.."botss:MeRo:Set:Rd"..msg.sender_user_id_..":"..msg.chat_id_) == "true1" then
-database:set(bot_id.."botss:MeRo:Set:Rd"..msg.sender_user_id_..":"..msg.chat_id_,'rd1')
+local test = database:get(bot_id.."botss:Amir:Text:Sudo:Bot"..msg.sender_user_id_..":"..msg.chat_id_)
+if database:get(bot_id.."botss:Amir:Set:Rd"..msg.sender_user_id_..":"..msg.chat_id_) == "true1" then
+database:set(bot_id.."botss:Amir:Set:Rd"..msg.sender_user_id_..":"..msg.chat_id_,'rd1')
 if text then   
 text = text:gsub('"',"") 
 text = text:gsub('"',"") 
 text = text:gsub("`","") 
 text = text:gsub("*","") 
-database:set(bot_id.."botss:MeRo:Add:Rd:Sudo:Text"..test, text)  
+database:set(bot_id.."botss:Amir:Add:Rd:Sudo:Text"..test, text)  
 end  
 send(msg.chat_id_, msg.id_,"*⌯︙تم حفظ الرد الاول ارسل الرد الثاني*")
 return false  
 end  
 end
 if text then  
-local test = database:get(bot_id.."botss:MeRo:Text:Sudo:Bot"..msg.sender_user_id_..":"..msg.chat_id_)
-if database:get(bot_id.."botss:MeRo:Set:Rd"..msg.sender_user_id_..":"..msg.chat_id_) == "rd1" then
-database:set(bot_id.."botss:MeRo:Set:Rd"..msg.sender_user_id_..":"..msg.chat_id_,'rd2')
+local test = database:get(bot_id.."botss:Amir:Text:Sudo:Bot"..msg.sender_user_id_..":"..msg.chat_id_)
+if database:get(bot_id.."botss:Amir:Set:Rd"..msg.sender_user_id_..":"..msg.chat_id_) == "rd1" then
+database:set(bot_id.."botss:Amir:Set:Rd"..msg.sender_user_id_..":"..msg.chat_id_,'rd2')
 if text then   
 text = text:gsub('"',"") 
 text = text:gsub('"',"") 
 text = text:gsub("`","") 
 text = text:gsub("*","") 
-database:set(bot_id.."botss:MeRo:Add:Rd:Sudo:Text1"..test, text)  
+database:set(bot_id.."botss:Amir:Add:Rd:Sudo:Text1"..test, text)  
 end  
 send(msg.chat_id_, msg.id_,"*⌯︙تم حفظ الرد الثاني ارسل الرد الثالث*")
 return false  
 end  
 end
 if text then  
-local test = database:get(bot_id.."botss:MeRo:Text:Sudo:Bot"..msg.sender_user_id_..":"..msg.chat_id_)
-if database:get(bot_id.."botss:MeRo:Set:Rd"..msg.sender_user_id_..":"..msg.chat_id_) == "rd2" then
-database:set(bot_id.."botss:MeRo:Set:Rd"..msg.sender_user_id_..":"..msg.chat_id_,'rd3')
+local test = database:get(bot_id.."botss:Amir:Text:Sudo:Bot"..msg.sender_user_id_..":"..msg.chat_id_)
+if database:get(bot_id.."botss:Amir:Set:Rd"..msg.sender_user_id_..":"..msg.chat_id_) == "rd2" then
+database:set(bot_id.."botss:Amir:Set:Rd"..msg.sender_user_id_..":"..msg.chat_id_,'rd3')
 if text then   
 text = text:gsub('"',"") 
 text = text:gsub('"',"") 
 text = text:gsub("`","") 
 text = text:gsub("*","") 
-database:set(bot_id.."botss:MeRo:Add:Rd:Sudo:Text2"..test, text)  
+database:set(bot_id.."botss:Amir:Add:Rd:Sudo:Text2"..test, text)  
 end  
 send(msg.chat_id_, msg.id_,"*⌯︙تم حفظ الرد*")
 return false  
 end  
 end
 if text then
-local Text = database:get(bot_id.."botss:MeRo:Add:Rd:Sudo:Text"..text)   
-local Text1 = database:get(bot_id.."botss:MeRo:Add:Rd:Sudo:Text1"..text)   
-local Text2 = database:get(bot_id.."botss:MeRo:Add:Rd:Sudo:Text2"..text)   
+local Text = database:get(bot_id.."botss:Amir:Add:Rd:Sudo:Text"..text)   
+local Text1 = database:get(bot_id.."botss:Amir:Add:Rd:Sudo:Text1"..text)   
+local Text2 = database:get(bot_id.."botss:Amir:Add:Rd:Sudo:Text2"..text)   
 if Text or Text1 or Text2 then 
 local texting = {
 Text,
@@ -9695,7 +9695,7 @@ return false
 end
 tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},function(arg,data) 
 usertext = '\n*⌯︙العضو » ['..data.first_name_..'](t.me/'..(data.username_ or 'TELAND')..') '
-status  = '\n*⌯︙تم ضافه {'..timsh..'} كلقب له*'
+status = '\n*⌯︙تم ضافه {'..timsh..'} كلقب له*'
 send(msg.chat_id_, msg.id_, usertext..status)
 https.request("https://api.telegram.org/bot"..token.."/promoteChatMember?chat_id=" .. msg.chat_id_ .. "&user_id=" ..result.sender_user_id_.."&can_change_info=false&can_delete_messages=false&can_invite_users=True&can_restrict_members=false&can_pin_messages=True&can_promote_members=false")
 https.request("https://api.telegram.org/bot"..token.."/setChatAdministratorCustomTitle?chat_id=" .. msg.chat_id_ .. "&user_id=" ..result.sender_user_id_.."&custom_title="..timsh)
@@ -9714,7 +9714,7 @@ local edit = tonumber(database:get(bot_id..'edits'..msg.chat_id_..result.sender_
 local rtp = Rutba(result.sender_user_id_,msg.chat_id_)
 local username = ('[@'..data.username_..']' or 'لا يوجد')
 local iduser = result.sender_user_id_
-send(msg.chat_id_, msg.id_,' *⌯︙ايديه ↫ '..iduser..'*\n*⌯︙معرفه ↫ '..username..'*\n*⌯︙رتبته ↫ '..rtp..'*\n*⌯︙تعديلاته ↫ '..edit..'*\n*⌯︙نقاطه ↫ '..NUMPGAME..'*\n*⌯︙جهاته ↫ '..Contact..'*\n*⌯︙رسائله ↫ '..Msguser..'*')
+send(msg.chat_id_, msg.id_,' *⌯︙ايديه ↫ '..iduser..'*\n*⌯︙معرفه ↫* '..username..'\n*⌯︙رتبته ↫ '..rtp..'*\n*⌯︙تعديلاته ↫ '..edit..'*\n*⌯︙نقاطه ↫ '..NUMPGAME..'*\n*⌯︙جهاته ↫ '..Contact..'*\n*⌯︙رسائله ↫ '..Msguser..'*')
 end,nil)
 end
 tdcli_function ({ID = "GetMessage",chat_id_ = msg.chat_id_,message_id_ = tonumber(msg.reply_to_message_id_)}, start_function, nil)
@@ -10850,7 +10850,7 @@ t = t..'}}'
 local File = io.open('./'..bot_id..'.json', "w")
 File:write(t)
 File:close()
-sendDocument(SUDO, msg.id_,0, 1, nil, './'..bot_id..'.json', '*⌯︙عدد مجموعات التي في البوت { '..#list..'}*')
+sendDocument(SUDO, msg.id_,0, 1, nil, './'..bot_id..'.json', '*⌯︙عدد مجموعات التي في البوت* { '..#list..'}')
 database:set(bot_id.."AutoFile:Time",os.date("%x"))
 end
 else 
