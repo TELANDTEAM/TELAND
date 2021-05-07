@@ -9169,7 +9169,7 @@ if database:get(bot_id.."botss:Amir:Set:Rd"..msg.sender_user_id_..":"..msg.chat_
 send(msg.chat_id_, msg.id_, '\n*⌯︙ارسل الكلمه تريد اضافتها*')
 database:set(bot_id.."botss:Amir:Set:Rd"..msg.sender_user_id_..":"..msg.chat_id_, "true1")
 database:set(bot_id.."botss:Amir:Text:Sudo:Bot"..msg.sender_user_id_..":"..msg.chat_id_, text)
-database:sadd(bot_id.."botss:Amir:List:Rd:Sudo", text)
+database:sadd(bot_id.."botss:"..msg.chat_id_..":Amir:List:Rd:Sudo", text)
 return false end
 end
 if text and text:match("^(.*)$") then
@@ -9179,7 +9179,7 @@ database:del(bot_id..'botss:Amir:Add:Rd:Sudo:Text'..text)
 database:del(bot_id..'botss:Amir:Add:Rd:Sudo:Text1'..text)
 database:del(bot_id..'botss:Amir:Add:Rd:Sudo:Text2'..text)
 database:del(bot_id.."botss:Amir:Set:On"..msg.sender_user_id_..":"..msg.chat_id_)
-database:srem(bot_id.."botss:Amir:List:Rd:Sudo", text)
+database:srem(bot_id.."botss:"..msg.chat_id_..":Amir:List:Rd:Sudo", text)
 return false
 end
 end
@@ -9193,12 +9193,12 @@ send(msg.chat_id_, msg.id_,'  *⌯︙عذࢪا عليڪ الاشتࢪاڪ في �
 end
 return false
 end
-local list = database:smembers(bot_id.."botss:Amir:List:Rd:Sudo")
+local list = database:smembers(bot_id.."botss:"..msg.chat_id_..":Amir:List:Rd:Sudo")
 for k,v in pairs(list) do  
-database:del(bot_id.."botss:Amir:Add:Rd:Sudo:Text"..v) 
-database:del(bot_id.."botss:Amir:Add:Rd:Sudo:Text1"..v) 
-database:del(bot_id.."botss:Amir:Add:Rd:Sudo:Text2"..v)   
-database:del(bot_id.."botss:Amir:List:Rd:Sudo")
+database:del(bot_id.."botss:"..msg.chat_id_..":Amir:Add:Rd:Sudo:Text"..v) 
+database:del(bot_id.."botss:"..msg.chat_id_..":Amir:Add:Rd:Sudo:Text1"..v) 
+database:del(bot_id.."botss:"..msg.chat_id_..":Amir:Add:Rd:Sudo:Text2"..v)   
+database:del(bot_id.."botss:"..msg.chat_id_..":Amir:List:Rd:Sudo")
 end
 send(msg.chat_id_, msg.id_,"*⌯︙تم حذف ردود المتعدده*")
 end
@@ -9451,7 +9451,7 @@ send(msg.chat_id_, msg.id_,'  *⌯︙عذࢪا عليڪ الاشتࢪاڪ في �
 end
 return false
 end
-local list = database:smembers(bot_id.."botss:Amir:List:Rd:Sudo")
+local list = database:smembers(bot_id.."botss:"..msg.chat_id_..":Amir:List:Rd:Sudo")
 text = "\nقائمة ردود المتعدده\n*ٴ•━━━━━━ 𝗧𝗘 ━━━━━━━•*\n"
 for k,v in pairs(list) do
 db = "رساله "
@@ -9497,7 +9497,7 @@ text = text:gsub('"',"")
 text = text:gsub('"',"") 
 text = text:gsub("`","") 
 text = text:gsub("*","") 
-database:set(bot_id.."botss:Amir:Add:Rd:Sudo:Text"..test, text)  
+database:set(bot_id.."botss:"..msg.chat_id_..":Amir:Add:Rd:Sudo:Text"..test, text)  
 end  
 send(msg.chat_id_, msg.id_,"*⌯︙تم حفظ الرد الاول ارسل الرد الثاني*")
 return false  
@@ -9512,7 +9512,7 @@ text = text:gsub('"',"")
 text = text:gsub('"',"") 
 text = text:gsub("`","") 
 text = text:gsub("*","") 
-database:set(bot_id.."botss:Amir:Add:Rd:Sudo:Text1"..test, text)  
+database:set(bot_id.."botss:"..msg.chat_id_..":Amir:Add:Rd:Sudo:Text1"..test, text)  
 end  
 send(msg.chat_id_, msg.id_,"*⌯︙تم حفظ الرد الثاني ارسل الرد الثالث*")
 return false  
@@ -9527,16 +9527,16 @@ text = text:gsub('"',"")
 text = text:gsub('"',"") 
 text = text:gsub("`","") 
 text = text:gsub("*","") 
-database:set(bot_id.."botss:Amir:Add:Rd:Sudo:Text2"..test, text)  
+database:set(bot_id.."botss:Amir:"..msg.chat_id_..":Add:Rd:Sudo:Text2"..test, text)  
 end  
 send(msg.chat_id_, msg.id_,"*⌯︙تم حفظ الرد*")
 return false  
 end  
 end
 if text then
-local Text = database:get(bot_id.."botss:Amir:Add:Rd:Sudo:Text"..text)   
-local Text1 = database:get(bot_id.."botss:Amir:Add:Rd:Sudo:Text1"..text)   
-local Text2 = database:get(bot_id.."botss:Amir:Add:Rd:Sudo:Text2"..text)   
+local Text = database:get(bot_id.."botss:"..msg.chat_id_..":Amir:Add:Rd:Sudo:Text"..text)   
+local Text1 = database:get(bot_id.."botss:"..msg.chat_id_..":Amir:Add:Rd:Sudo:Text1"..text)   
+local Text2 = database:get(bot_id.."botss:"..msg.chat_id_..":Amir:Add:Rd:Sudo:Text2"..text)   
 if Text or Text1 or Text2 then 
 local texting = {
 Text,
