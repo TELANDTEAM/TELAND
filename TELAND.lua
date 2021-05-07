@@ -947,6 +947,34 @@ echo '*———————————~*\n✺✔{ الــدخــول } ⇎\n
 echo '*———————————~*\n✺✔{ مـده تـشغيـل الـسـيـرفـر }⇎\n*»» '"$uptime"'*'
 ]]):read('*all'))  
 end
+if database:get(bot_id.."Ed:DevBots") then
+if text and text:match("^(%d+)$") then
+local IdDe = text:match("^(%d+)$")
+tdcli_function ({ID = "GetUser",user_id_ = IdDe},function(arg,data) 
+if data.username_ ~= false then
+send(msg.chat_id_,msg.id_, "*⌯︙تم تغيير المطور الاساسي بنجاح*")
+local A = io.open("Info.lua", 'w')
+A:write([[
+token = "]]..token..[["
+SUDO = ]]..IdDe..[[  
+UserName = "]]..data.username_..[["
+]])
+A:close()
+database:del(bot_id.."Ed:DevBots")
+dofile('TELAND.lua')  
+else
+send(msg.chat_id_,msg.id_, "*⌯︙عذرا صاحب الايدي لا يمتلك معرف ارسل ايدي اخر*")
+end
+end,nil)
+end
+end
+if text =='تغيير المطور الاساسي ⌯' and SudoBot(msg) then
+send(msg.chat_id_, msg.id_,'*⌯︙ ارسل ايدي المطور الاساسي الجديد*')
+database:set(bot_id..'Ed:DevBots',true) 
+end
+if text =='تغيير المطور الاساسي ⌯' and not SudoBot(msg) then
+send(msg.chat_id_, msg.id_,'*⌯︙لا يمكنك تغيير المطور الاساسي*')
+end
 if text == 'تحديث السورس ⌯' and DevTELANDW(msg) then 
 os.execute('rm -rf TELAND.lua')
 os.execute('wget https://raw.githubusercontent.com/TELANDTEAM/TELAND/main/TELAND.lua')
