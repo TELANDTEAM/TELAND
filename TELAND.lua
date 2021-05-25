@@ -2523,7 +2523,7 @@ end
 Text = "ᴡᴇʟᴄᴏᴍᴇ ᴛᴏ sᴏᴜʀᴄʀ ᴛᴇʟᴀɴᴅ\n\n[⌯  ᴛᴇʟᴀɴᴅ ᴄʜᴀɴɴᴇʟ](http://t.me/TELANDTEAM)\n\n[⌯  ɪɴғᴏ sᴏᴜʀᴄᴇ](http://t.me/IIIS1)\n\n[⌯  ᴛᴇʟᴀɴᴅ ᴅᴇᴠᴇʟᴏᴘᴇʀ](http://t.me/VVVZVV)\n\n[⌯  ʙᴏᴛ ᴛᴇʟᴀɴᴅ](http://t.me/vvvzvvbot)"
 keyboard = {} 
 keyboard.inline_keyboard = {
-{{text = '⌯ sᴏᴜʀᴄʀ ᴛᴇʟᴀɴᴅ',url="t.me/TELANDTEAM"}},
+{{text = '⌯ sᴏᴜʀᴄʀ ᴛᴇʟᴀɴᴅ',url="t.me/TELANDTEAM/3"}},
 }
 local msg_id = msg.id_/2097152/0.5
 https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/TELANDTEAM&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
