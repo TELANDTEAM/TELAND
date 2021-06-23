@@ -921,14 +921,14 @@ end
 tdcli_function ({ID = "GetUser",user_id_ = id_user},function(arg,data) 
 if text == 'حظر' then
 local Name = '['..string.sub(data.first_name_,0, 40)..'](tg://user?id='..id_user..')'
-local Text = ' *⌯︙المستخدم » '..Name..'*\n*⌯︙تم حظره من التواصل*'
+local Text = ' *⌯︙المستخدم »* '..Name..'\n*⌯︙تم حظره من التواصل*'
 sendText(SUDO,Text,msg.id_/2097152/0.5,'md')
 database:sadd(bot_id..'Ban:User_Bot',data.id_)  
 return false  
 end 
 if text =='الغاء الحظر' then
 local Name = '['..string.sub(data.first_name_,0, 40)..'](tg://user?id='..id_user..')'
-local Text = ' *⌯︙المستخدم » '..Name..'*\n*⌯︙تم الغاء حظره من التواصل*'
+local Text = ' *⌯︙المستخدم »* '..Name..'\n*⌯︙تم الغاء حظره من التواصل*'
 sendText(SUDO,Text,msg.id_/2097152/0.5,'md')
 database:srem(bot_id..'Ban:User_Bot',data.id_)  
 return false  
