@@ -72,7 +72,7 @@ return idbot
 end
 function SudoBotCoSu(msg) 
 local hash = database:sismember(bot_id..'CoSu'..msg.chat_id_, msg.sender_user_id_) 
-if hash or SudoBot(msg) or DevTELANDW(msg) or Bot(msg)  then  
+if hash or SudoBot(msg) or DevTELANDW(msg) or Sudo(msg) or Bot(msg)  then  
 return true  
 else  
 return false  
