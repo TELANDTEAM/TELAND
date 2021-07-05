@@ -2179,7 +2179,7 @@ tdcli_function({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data
 if data.username_ ~= false then
 send(msg.chat_id_,0, " *⌯︙عذرا ↫* {[@"..data.username_.."]}\n*⌯︙عذرا تم منع الملصق* \n" ) 
 else
-send(msg.chat_id_,0, " *⌯︙عذرا ↫* {["..data.first_name_.."](T.ME/YYYDR)}\n*⌯︙عذرا تم منع الملصق* \n" ) 
+send(msg.chat_id_,0, " *⌯︙عذرا ↫* {["..data.first_name_.."](T.ME/IIIS1)}\n*⌯︙عذرا تم منع الملصق* \n" ) 
 end
 end,nil)   
 DeleteMessage(msg.chat_id_,{[0] = msg.id_})       
@@ -2195,7 +2195,7 @@ tdcli_function({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data
 if data.username_ ~= false then
 send(msg.chat_id_,0," ⌯︙عذرا ↫ {[@"..data.username_.."]}\n ⌯︙عذرا تم منع الصوره \n" ) 
 else
-send(msg.chat_id_,0," ⌯︙عذرا ↫ {["..data.first_name_.."](T.ME/YYYDR)}\n ⌯︙عذرا تم منع الصوره \n") 
+send(msg.chat_id_,0," ⌯︙عذرا ↫ {["..data.first_name_.."](T.ME/IIIS1)}\n ⌯︙عذرا تم منع الصوره \n") 
 end
 end,nil)   
 DeleteMessage(msg.chat_id_,{[0] = msg.id_})       
@@ -2203,7 +2203,7 @@ return false
 end
 end
 end
------------------------------------------------------------------------- عـمـر الـدلـيـم
+------------------------------------------------------------------------ امـيـر الـدلـيـم
 if msg.content_.ID == 'MessageAnimation' and not Manager(msg) then 
 local filter = database:smembers(bot_id.."filteranimation"..msg.chat_id_)
 for k,v in pairs(filter) do
@@ -2212,7 +2212,7 @@ tdcli_function({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data
 if data.username_ ~= false then
 send(msg.chat_id_,0," *⌯︙عذرا ↫* {[@"..data.username_.."]}\n*⌯︙عذرا تم منع المتحركه* \n") 
 else
-send(msg.chat_id_,0," *⌯︙عذرا ↫* {["..data.first_name_.."](T.ME/YYYDR)}\n*⌯︙عذرا تم منع المتحركه* \n" ) 
+send(msg.chat_id_,0," *⌯︙عذرا ↫* {["..data.first_name_.."](T.ME/IIIS1)}\n*⌯︙عذرا تم منع المتحركه* \n" ) 
 end
 end,nil)   
 DeleteMessage(msg.chat_id_,{[0] = msg.id_})       
@@ -9977,18 +9977,18 @@ function start_function(extra, result, success)
 local chek = https.request('https://api.telegram.org/bot'..token..'/getChatMember?chat_id='..msg.chat_id_..'&user_id='..bot_id)
 local getInfo = JSON.decode(chek)
 if getInfo.result.can_promote_members == false then
-send(msg.chat_id_, msg.id_,'⌯︙لا يمكنني تعديل  او وضع لقب ليس لدي صلاحيه') 
+send(msg.chat_id_, msg.id_,'*⌯︙لا يمكنني تعديل  او وضع لقب ليس لدي صلاحيه*') 
 return false  
 end
 https.request("https://api.telegram.org/bot"..token.."/promoteChatMember?chat_id=" .. msg.chat_id_ .. "&user_id=" ..result.sender_user_id_.."&can_change_info=false&can_delete_messages=false&can_invite_users=true&can_restrict_members=false&can_pin_messages=True&can_promote_members=true")
 okfalse = json:decode(https.request("https://api.telegram.org/bot"..token.."/setChatAdministratorCustomTitle?chat_id=" .. msg.chat_id_ .. "&user_id=" ..result.sender_user_id_.."&custom_title="..timsh) ) 
 if okfalse.ok == false then
-send(msg.chat_id_, msg.id_,'⌯︙لا يمكن وضع او تعديل لقب له') 
+send(msg.chat_id_, msg.id_,*'⌯︙لا يمكن وضع او تعديل لقب له*') 
 return false  
 end
 tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},function(arg,data) 
-usertext = '\n⌯︙ العضو -› ['..data.first_name_..'](t.me/'..(data.username_ or 'TELANDTEAM')..') '
-status  = '\n⌯︙ الايدي -› '..result.sender_user_id_..'\n⌯︙تم ضافه {'..timsh..'} كلقب له'
+usertext = '\n*⌯︙العضو »* ['..data.first_name_..'](t.me/'..(data.username_ or 'TELANDTEAM')..') '
+status  = '\n*⌯︙الايدي »* '..result.sender_user_id_..'\n*⌯︙تم ضافه {'..timsh..'} كلقب له*'
 send(msg.chat_id_, msg.id_, usertext..status)
 end,nil)
 end
