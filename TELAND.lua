@@ -9983,7 +9983,7 @@ end
 https.request("https://api.telegram.org/bot"..token.."/promoteChatMember?chat_id=" .. msg.chat_id_ .. "&user_id=" ..result.sender_user_id_.."&can_change_info=false&can_delete_messages=false&can_invite_users=true&can_restrict_members=false&can_pin_messages=True&can_promote_members=true")
 okfalse = json:decode(https.request("https://api.telegram.org/bot"..token.."/setChatAdministratorCustomTitle?chat_id=" .. msg.chat_id_ .. "&user_id=" ..result.sender_user_id_.."&custom_title="..timsh) ) 
 if okfalse.ok == false then
-send(msg.chat_id_, msg.id_,'⌯︙لا يمكن وضع او تعديل لقب له') 
+send(msg.chat_id_, msg.id_,'*⌯︙لا يمكن وضع او تعديل لقب له*') 
 return false  
 end
 tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},function(arg,data) 
