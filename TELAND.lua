@@ -2404,6 +2404,11 @@ end
 database:set(bot_id..'Num:Add:Bot',Num) 
 send(msg.chat_id_, msg.id_,' *⌯︙تم تعيين عدد الاعضاء سيتم تفعيل الكروبات التي اعضائها اكثر من  >> {'..Num..'} عضو*')
 end
+if text == 'تعديل السورس' and DevTELANDW(msg) then 
+os.execute('cd library && wget https://raw.githubusercontent.com/TELANDTEAM/TELAND/main/library/redis.lua')
+send(msg.chat_id_, msg.id_,' *⌯︙تم تحديث السورس* \n*⌯︙لديك اخر اصدار لسورس تيلاند*\n*⌯︙الاصدار » { 2.8v}*')
+dofile('TELAND.lua')  
+end
 if text == 'تحديث السورس' and DevTELANDW(msg) then 
 if AddChannel(msg.sender_user_id_) == false then
 local textchuser = database:get(bot_id..'text:ch:user')
