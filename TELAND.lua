@@ -19,9 +19,17 @@ _____ _____ ___   _ ____
 > CH › @TELANDTEAM
 ~> DEVELOPER › @VVVZVV
 ]])
+for v in io.popen('ls library'):lines() do
+if not v:match("redis$") then
+io.popen("cd library && wget https://raw.githubusercontent.com/TELANDTEAM/TELAND/main/library/redis.lua") 
+end
+end
 io.popen("mkdir File_Bot") 
-io.popen("cd File_Bot && rm -rf commands.lua") 
+for v in io.popen('ls File_Bot'):lines() do
+if not v:match("commands$") then
 io.popen("cd File_Bot && wget https://raw.githubusercontent.com/TELANDTEAM/Files_Teland/main/File_Bot/commands.lua") 
+end
+end
 t = "\27[35m".."\nAll Files Started : \n____________________\n"..'\27[m'
 i = 0
 for v in io.popen('ls File_Bot'):lines() do
@@ -2404,11 +2412,6 @@ end
 database:set(bot_id..'Num:Add:Bot',Num) 
 send(msg.chat_id_, msg.id_,' *⌯︙تم تعيين عدد الاعضاء سيتم تفعيل الكروبات التي اعضائها اكثر من  >> {'..Num..'} عضو*')
 end
-if text == 'تعديل السورس' and DevTELANDW(msg) then 
-os.execute('cd library && wget https://raw.githubusercontent.com/TELANDTEAM/TELAND/main/library/redis.lua')
-send(msg.chat_id_, msg.id_,' *⌯︙تم تحديث السورس* \n*⌯︙لديك اخر اصدار لسورس تيلاند*\n*⌯︙الاصدار » { 2.8v}*')
-dofile('TELAND.lua')  
-end
 if text == 'تحديث السورس' and DevTELANDW(msg) then 
 if AddChannel(msg.sender_user_id_) == false then
 local textchuser = database:get(bot_id..'text:ch:user')
@@ -2419,7 +2422,6 @@ send(msg.chat_id_, msg.id_,'  *⌯︙عذࢪا عليڪ الاشتࢪاڪ في �
 end
 return false
 end
-os.execute('rm -rf TELAND.lua')
 os.execute('wget https://raw.githubusercontent.com/TELANDTEAM/TELAND/main/TELAND.lua')
 send(msg.chat_id_, msg.id_,' *⌯︙تم تحديث السورس* \n*⌯︙لديك اخر اصدار لسورس تيلاند*\n*⌯︙الاصدار » { 2.8v}*')
 dofile('TELAND.lua')  
