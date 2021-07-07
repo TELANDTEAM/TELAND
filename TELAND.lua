@@ -4,7 +4,6 @@ database = dofile("./library/redis.lua").connect("127.0.0.1", 6379)
 json = dofile("./library/JSON.lua") 
 JSON  = dofile("./library/dkjson.lua")
 URL = require('socket.url')  
-utf8 = require ('lua-utf8') 
 sudos   = dofile("Info.lua")
 bot_id  = token:match("(%d+)")  
 SUDO = SUDO
@@ -19,17 +18,8 @@ _____ _____ ___   _ ____
 > CH › @TELANDTEAM
 ~> DEVELOPER › @VVVZVV
 ]])
-for v in io.popen('ls library'):lines() do
-if not v:match("redis$") then
-io.popen("cd library && wget https://raw.githubusercontent.com/TELANDTEAM/TELAND/main/library/redis.lua") 
-end
-end
 io.popen("mkdir File_Bot") 
-for v in io.popen('ls File_Bot'):lines() do
-if not v:match("commands$") then
 io.popen("cd File_Bot && wget https://raw.githubusercontent.com/TELANDTEAM/Files_Teland/main/File_Bot/commands.lua") 
-end
-end
 t = "\27[35m".."\nAll Files Started : \n____________________\n"..'\27[m'
 i = 0
 for v in io.popen('ls File_Bot'):lines() do
@@ -644,7 +634,7 @@ send(chat,msg.id_,"\n *⌯︙تم رفع الملف بنجاح وتفعيل ال
 end
 local function trigger_anti_spam(msg,type)
 tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data)
-local Name = '['..utf8.sub(data.first_name_,0,40)..'](tg://user?id='..data.id_..')'
+local Name = '['..data.first_name_..'](tg://user?id='..data.id_..')'
 if type == 'kick' then 
 Text = '\n *⌯︙العضــو » '..Name..'*\n*⌯︙قام بالتكرار هنا وتم طرده* '  
 sendText(msg.chat_id_,Text,0,'md')
@@ -1116,6 +1106,8 @@ if text =='تغيير المطور الاساسي ⌯' and not SudoBot(msg) then
 send(msg.chat_id_, msg.id_,'*⌯︙لا يمكنك تغيير المطور الاساسي*')
 end
 if text == 'تحديث السورس ⌯' and DevTELANDW(msg) then 
+os.execute("cd library && wget https://raw.githubusercontent.com/TELANDTEAM/TELAND/main/library/redis.lua") 
+os.execute('cd ..')
 os.execute('rm -rf TELAND.lua')
 os.execute('wget https://raw.githubusercontent.com/TELANDTEAM/TELAND/main/TELAND.lua')
 send(msg.chat_id_, msg.id_,' *⌯︙تم تحديث السورس* \n*⌯︙لديك اخر اصدار لسورس تيلاند*\n*⌯︙الاصدار » { 2.8v}*')
