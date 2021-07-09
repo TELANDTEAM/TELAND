@@ -9560,7 +9560,7 @@ if not database:get(bot_id..'lock:geam'..msg.chat_id_) then
 _key = {
 {{text="♟ Chess Game ♟",url='https://t.me/T4TTTTBOT?game=chess'}},
 {{text="لعبة فلابي بيرد 🐥",url='https://t.me/awesomebot?game=FlappyBird'},{text="تحداني فالرياضيات 🔢",url='https://t.me/gamebot?game=MathBattle'}},
-{{text="تحداني في ❌⭕️",url='t.me/Xo_motazbot?start3836619'},{text="سباق الدراجات 🏍",url='https://t.me/gamee?game=MotoFX'}},
+{{text="تحداني في ❌⭕️",url='t.me/XO_AABOT?start3836619'},{text="سباق الدراجات 🏍",url='https://t.me/gamee?game=MotoFX'}},
 {{text="سباق سيارات 🏎",url='https://t.me/gamee?game=F1Racer'},{text="متشابه 👾",url='https://t.me/gamee?game=DiamondRows'}},
 {{text="كرة قدم ⚽",url='https://t.me/gamee?game=FootballStar'}},
 {{text="دومنا🥇",url='https://vipgames.com/play/?affiliateId=wpDom/#/games/domino/lobby'},{text="❕ليدو",url='https://vipgames.com/play/?affiliateId=wpVG#/games/ludo/lobby'}},
@@ -9574,8 +9574,9 @@ _key = {
 {{text="🔵 Color Game 🔴",url='https://t.me/T4TTTTBOT?game=color'}},
 {{text="🚀 Rocket Game 🚀",url='https://t.me/T4TTTTBOT?game=rocket'},{text="🏹 Arrow Game 🏹",url='https://t.me/T4TTTTBOT?game=arrow'}},
 {{text = '𝑇𝐸𝐿𝐴𝑁𝐷 𝑇𝐸𝐴𝑀', url="t.me/TELANDTEAM"}},
+{{text = 'مطور السورس', url="t.me/VVVZVV"}},
 }
-send_inlin_key(msg.chat_id_," *⌯︙اختر اللعبه المناسبه الان من الكيبورد في الاسفل .*",_key,msg.id_)
+send_inlin_key(msg.chat_id_," *⌯︙قائمه الالعاب الاحترافيه اضغط للعب*",_key,msg.id_)
 else
 send(msg.chat_id_, msg.id_," *⌯︙الالعاب الاحترافيه معطله في الوقت الحالي .*")
 end
