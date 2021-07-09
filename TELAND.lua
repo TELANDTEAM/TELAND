@@ -18,22 +18,20 @@ _____ _____ ___   _ ____
 > CH › @TELANDTEAM
 ~> DEVELOPER › @VVVZVV
 ]])
-local fe_t = io.open("library/redis.lua","r")
-if fe_t then
-io.close(fe_t)
-print("ok R")
+if io.open("library/redis.lua","r") then
+io.close(io.open("library/redis.lua","r"))
+print("done => redis.lua")
 else
 io.popen("cd library && wget https://raw.githubusercontent.com/TELANDTEAM/TELAND/main/library/redis.lua") 
-print("end R")
+print("end wget => redis.lua")
 end
 io.popen("mkdir File_Bot") 
-local fe_bot = io.open("File_Bot/commands.lua","r")
-if fe_bot then
-io.close(fe_bot)
-print("ok")
+if io.open("File_Bot/commands.lua","r") then
+io.close(io.open("File_Bot/commands.lua","r"))
+print("done => commands.lua")
 else
 io.popen("cd File_Bot && wget https://raw.githubusercontent.com/TELANDTEAM/Files_Teland/main/File_Bot/commands.lua") 
-print("end")
+print("end wget => commands.lua")
 end
 t = "\27[35m".."\nAll Files Started : \n____________________\n"..'\27[m'
 i = 0
@@ -9729,92 +9727,6 @@ text = "لا توجد ردود متعدده"
 end
 send(msg.chat_id_, msg.id_,"["..text.."]")
 end
-if text == "اضف رد متعدد" and SudoBotCoSu(msg) then
-if AddChannel(msg.sender_user_id_) == false then
-local textchuser = database:get(bot_id..'text:ch:user')
-if textchuser then
-send(msg.chat_id_, msg.id_,'['..textchuser..']')
-else
-send(msg.chat_id_, msg.id_,'  *⌯︙عذࢪا عليڪ الاشتࢪاڪ في قناه البوت* \n*⌯︙اشتࢪڪ هنا عمࢪي* ['..database:get(bot_id..'add:ch:username')..']')
-end
-return false
-end
-database:set(bot_id.."botss:Amir:Set:Rd"..msg.sender_user_id_..":"..msg.chat_id_,true)
-return send(msg.chat_id_, msg.id_,"*⌯︙ارسل الرد الذي اريد اضافته*")
-end
-if text == "حذف رد متعدد" and SudoBotCoSu(msg) then
-if AddChannel(msg.sender_user_id_) == false then
-local textchuser = database:get(bot_id..'text:ch:user')
-if textchuser then
-send(msg.chat_id_, msg.id_,'['..textchuser..']')
-else
-send(msg.chat_id_, msg.id_,'  *⌯︙عذࢪا عليڪ الاشتࢪاڪ في قناه البوت* \n*⌯︙اشتࢪڪ هنا عمࢪي* ['..database:get(bot_id..'add:ch:username')..']')
-end
-return false
-end
-database:set(bot_id.."botss:Amir:Set:On"..msg.sender_user_id_..":"..msg.chat_id_,true)
-return send(msg.chat_id_, msg.id_,"*⌯︙ارسل الان الكلمه لحذفها*")
-end
-if text then  
-local test = database:get(bot_id.."botss:Amir:Text:Sudo:Bot"..msg.sender_user_id_..":"..msg.chat_id_)
-if database:get(bot_id.."botss:Amir:Set:Rd"..msg.sender_user_id_..":"..msg.chat_id_) == "true1" then
-database:set(bot_id.."botss:Amir:Set:Rd"..msg.sender_user_id_..":"..msg.chat_id_,'rd1')
-if text then   
-text = text:gsub('"',"") 
-text = text:gsub('"',"") 
-text = text:gsub("`","") 
-text = text:gsub("*","") 
-database:set(bot_id.."botss:"..msg.chat_id_..":Amir:Add:Rd:Sudo:Text"..test, text)  
-end  
-send(msg.chat_id_, msg.id_,"*⌯︙تم حفظ الرد الاول ارسل الرد الثاني*")
-return false  
-end  
-end
-if text then  
-local test = database:get(bot_id.."botss:Amir:Text:Sudo:Bot"..msg.sender_user_id_..":"..msg.chat_id_)
-if database:get(bot_id.."botss:Amir:Set:Rd"..msg.sender_user_id_..":"..msg.chat_id_) == "rd1" then
-database:set(bot_id.."botss:Amir:Set:Rd"..msg.sender_user_id_..":"..msg.chat_id_,'rd2')
-if text then   
-text = text:gsub('"',"") 
-text = text:gsub('"',"") 
-text = text:gsub("`","") 
-text = text:gsub("*","") 
-database:set(bot_id.."botss:"..msg.chat_id_..":Amir:Add:Rd:Sudo:Text1"..test, text)  
-end  
-send(msg.chat_id_, msg.id_,"*⌯︙تم حفظ الرد الثاني ارسل الرد الثالث*")
-return false  
-end  
-end
-if text then  
-local test = database:get(bot_id.."botss:Amir:Text:Sudo:Bot"..msg.sender_user_id_..":"..msg.chat_id_)
-if database:get(bot_id.."botss:Amir:Set:Rd"..msg.sender_user_id_..":"..msg.chat_id_) == "rd2" then
-database:set(bot_id.."botss:Amir:Set:Rd"..msg.sender_user_id_..":"..msg.chat_id_,'rd3')
-if text then   
-text = text:gsub('"',"") 
-text = text:gsub('"',"") 
-text = text:gsub("`","") 
-text = text:gsub("*","") 
-database:set(bot_id.."botss:Amir:"..msg.chat_id_..":Add:Rd:Sudo:Text2"..test, text)  
-end  
-send(msg.chat_id_, msg.id_,"*⌯︙تم حفظ الرد*")
-return false  
-end  
-end
-if text then
-local Text = database:get(bot_id.."botss:"..msg.chat_id_..":Amir:Add:Rd:Sudo:Text"..text)   
-local Text1 = database:get(bot_id.."botss:"..msg.chat_id_..":Amir:Add:Rd:Sudo:Text1"..text)   
-local Text2 = database:get(bot_id.."botss:"..msg.chat_id_..":Amir:Add:Rd:Sudo:Text2"..text)   
-if Text or Text1 or Text2 then 
-local texting = {
-Text,
-Text1,
-Text2
-}
-Textes = math.random(#texting)
-send(msg.chat_id_, msg.id_,texting[Textes])
-end
-end
--------------------------------
 if text == ""..(database:get(bot_id..'Name:Bot') or 'تيلاند').." غادر" or text == 'غادر' then  
 if Sudo(msg) and not database:get(bot_id..'Left:Bot'..msg.chat_id_)  then 
 tdcli_function ({ID = "ChangeChatMemberStatus",chat_id_=msg.chat_id_,user_id_=bot_id,status_={ID = "ChatMemberStatusLeft"},},function(e,g) end, nil) 
@@ -10319,7 +10231,6 @@ send(msg.chat_id_, msg.id_,' *⌯︙تم تعطيل امر صيح*')
 end
 return false
 end
-
 if text == 'منو ضافني' then
 if not database:get(bot_id..'Added:Me'..msg.chat_id_) then
 tdcli_function ({ID = "GetChatMember",chat_id_ = msg.chat_id_,user_id_ = msg.sender_user_id_},function(arg,da) 
@@ -10342,7 +10253,6 @@ else
 send(msg.chat_id_, msg.id_,' *⌯︙تم تعطيل امر منو ضافني*') 
 end
 end
-
 if text == 'تفعيل ضافني' and Manager(msg) then   
 if database:get(bot_id..'Added:Me'..msg.chat_id_) then
 Text = ' *⌯︙تم تفعيل امر منو ضافني*'
@@ -11137,6 +11047,31 @@ local msg_id = msg.id_/2097152/0.5
 https.request("https://api.telegram.org/bot"..token..'/sendMessage?chat_id=' .. msg.chat_id_ .. '&text=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
 return false
 end
+if text == 'الالعاب الاحترافيه' and Special(msg) then  
+if not database:get(bot_id..'lock:geam'..msg.chat_id_) then
+_key = {
+{{text="♟ Chess Game ♟",url='https://t.me/T4TTTTBOT?game=chess'}},
+{{text="لعبة فلابي بيرد 🐥",url='https://t.me/awesomebot?game=FlappyBird'},{text="تحداني فالرياضيات 🔢",url='https://t.me/gamebot?game=MathBattle'}},
+{{text="تحداني في ❌⭕️",url='t.me/Xo_motazbot?start3836619'},{text="سباق الدراجات 🏍",url='https://t.me/gamee?game=MotoFX'}},
+{{text="سباق سيارات 🏎",url='https://t.me/gamee?game=F1Racer'},{text="متشابه 👾",url='https://t.me/gamee?game=DiamondRows'}},
+{{text="كرة قدم ⚽",url='https://t.me/gamee?game=FootballStar'}},
+{{text="دومنا🥇",url='https://vipgames.com/play/?affiliateId=wpDom/#/games/domino/lobby'},{text="❕ليدو",url='https://vipgames.com/play/?affiliateId=wpVG#/games/ludo/lobby'}},
+{{text="ورق🤹‍♂",url='https://t.me/gamee?game=Hexonix'},{text="Hexonix❌",url='https://t.me/gamee?game=Hexonix'}},
+{{text="MotoFx🏍️",url='https://t.me/gamee?game=MotoFx'}},
+{{text="لعبة 2048 🎰",url='https://t.me/awesomebot?game=g2048'},{text="Squares🏁",url='https://t.me/gamee?game=Squares'}},
+{{text="Atomic 1▶️",url='https://t.me/gamee?game=AtomicDrop1'},{text="Corsairs",url='https://t.me/gamebot?game=Corsairs'}},
+{{text="LumberJack",url='https://t.me/gamebot?game=LumberJack'}},
+{{text="LittlePlane",url='https://t.me/gamee?game=LittlePlane'},{text="RollerDisco",url='https://t.me/gamee?game=RollerDisco'}},
+{{text="🦖 Dragon Game 🦖",url='https://t.me/T4TTTTBOT?game=dragon'},{text="🐍 3D Snake Game 🐍",url='https://t.me/T4TTTTBOT?game=snake'}},
+{{text="🔵 Color Game 🔴",url='https://t.me/T4TTTTBOT?game=color'}},
+{{text="🚀 Rocket Game 🚀",url='https://t.me/T4TTTTBOT?game=rocket'},{text="🏹 Arrow Game 🏹",url='https://t.me/T4TTTTBOT?game=arrow'}},
+{{text = '𝑇𝐸𝐿𝐴𝑁𝐷 𝑇𝐸𝐴𝑀', url="t.me/TELANDTEAM"}},
+}
+send_inlin_key(msg.chat_id_," *⌯︙اختر اللعبه المناسبه الان من الكيبورد في الاسفل .*",_key,msg.id_)
+else
+send(msg.chat_id_, msg.id_," *⌯︙الالعاب الاحترافيه معطله في الوقت الحالي .*")
+end
+end
 if text == "تعطيل الزخرفه" and Manager(msg) then
 send(msg.chat_id_, msg.id_, '*⌯︙تم تعطيل الزخرفه*')
 database:set(bot_id.." amir:zhrf_Bots"..msg.chat_id_,"close")
@@ -11393,8 +11328,8 @@ if tonumber(msg.reply_to_message_id_) == 0 then
 function prom_username(extra, result, success) 
 if (result and result.code_ == 400 or result and result.message_ == "USERNAME_NOT_OCCUPIED") then
 SendText(msg.chat_id_,msg.id_,"*⌯︙المعرف غير صحيح \n*")   
-return false  end   
-
+return false 
+end   
 Get_Info(msg,msg.chat_id_,result.id_)
 end  
 tdcli_function ({ID = "SearchPublicChat",username_ = username},prom_username,nil) 
@@ -12126,7 +12061,7 @@ keyboard.inline_keyboard = {
 }
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Text)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard)) 
 end
-end
+
 end
 if data.ID == "UpdateNewMessage" then  -- new msg
 msg = data.message_
