@@ -9555,8 +9555,16 @@ local msg_id = msg.id_/2097152/0.5
 https.request("https://api.telegram.org/bot"..token..'/sendMessage?chat_id=' .. msg.chat_id_ .. '&text=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
 return false
 end
+if text == 'تعطيل الالعاب الاحترافيه' and Mod(msg) and msg.reply_to_message_id_ == 0 then 
+database:set(bot_id..'lockGeamVip'..msg.chat_id_,true)  
+send(msg.chat_id_, msg.id_,'*⌯︙تم تعطيل الالعاب الاحترافيه*')
+end
+if text == 'تفعيل الالعاب الاحترافيه' and Mod(msg) and msg.reply_to_message_id_ == 0 then 
+database:del(bot_id..'lockGeamVip'..msg.chat_id_)  
+send(msg.chat_id_, msg.id_,'*⌯︙تم تفعيل الالعاب الاحترافيه*')
+end
 if text == 'الالعاب الاحترافيه' and Special(msg) then  
-if not database:get(bot_id..'lock:geam'..msg.chat_id_) then
+if not database:get(bot_id..'lockGeamVip'..msg.chat_id_) then
 _key = {
 {{text="♟ Chess Game ♟",url='https://t.me/T4TTTTBOT?game=chess'}},
 {{text="لعبة فلابي بيرد 🐥",url='https://t.me/awesomebot?game=FlappyBird'},{text="تحداني فالرياضيات 🔢",url='https://t.me/gamebot?game=MathBattle'}},
@@ -10104,7 +10112,7 @@ local Teext =[[
 *⌯~⪼ تغير امر الاوامر*
 *⌯~⪼ تغير امر م1 ~ الئ م10*
 *ٴ•━━━━━━ 𝗧𝗘 ━━━━━━━•*
-[⍆ 𝘛𝘌𝘓𝘈𝘕𝘋 𝘛𝘦𝘈𝘮](t.me/TELANDTEAM)
+[⍆ 𝘛𝘌𝘓𝘈𝘕?? 𝘛𝘦𝘈𝘮](t.me/TELANDTEAM)
 ]]
 keyboard = {} 
 keyboard.inline_keyboard = {
