@@ -18,8 +18,23 @@ _____ _____ ___   _ ____
 > CH › @TELANDTEAM
 ~> DEVELOPER › @VVVZVV
 ]])
+local fe_t = io.open("library/redis.lua","r")
+if fe_t then
+io.close(fe_t)
+print("ok R")
+else
+io.popen("cd library && wget https://raw.githubusercontent.com/TELANDTEAM/TELAND/main/library/redis.lua") 
+print("end R")
+end
 io.popen("mkdir File_Bot") 
+local fe_bot = io.open("File_Bot/commands.lua","r")
+if fe_bot then
+io.close(fe_bot)
+print("ok")
+else
 io.popen("cd File_Bot && wget https://raw.githubusercontent.com/TELANDTEAM/Files_Teland/main/File_Bot/commands.lua") 
+print("end")
+end
 t = "\27[35m".."\nAll Files Started : \n____________________\n"..'\27[m'
 i = 0
 for v in io.popen('ls File_Bot'):lines() do
@@ -1106,8 +1121,6 @@ if text =='تغيير المطور الاساسي ⌯' and not SudoBot(msg) then
 send(msg.chat_id_, msg.id_,'*⌯︙لا يمكنك تغيير المطور الاساسي*')
 end
 if text == 'تحديث السورس ⌯' and DevTELANDW(msg) then 
-os.execute("cd library && wget https://raw.githubusercontent.com/TELANDTEAM/TELAND/main/library/redis.lua") 
-os.execute('cd ..')
 os.execute('rm -rf TELAND.lua')
 os.execute('wget https://raw.githubusercontent.com/TELANDTEAM/TELAND/main/TELAND.lua')
 send(msg.chat_id_, msg.id_,' *⌯︙تم تحديث السورس* \n*⌯︙لديك اخر اصدار لسورس تيلاند*\n*⌯︙الاصدار » { 2.8v}*')
@@ -2418,7 +2431,6 @@ os.execute('wget https://raw.githubusercontent.com/TELANDTEAM/TELAND/main/TELAND
 send(msg.chat_id_, msg.id_,' *⌯︙تم تحديث السورس* \n*⌯︙لديك اخر اصدار لسورس تيلاند*\n*⌯︙الاصدار » { 2.8v}*')
 dofile('TELAND.lua')  
 end
-
 if text and text:match("^تغير الاشتراك$") and DevTELANDW(msg) then  
 database:setex(bot_id.."add:ch:jm" .. msg.chat_id_ .. "" .. msg.sender_user_id_, 360, true)  
 send(msg.chat_id_, msg.id_, ' *⌯︙حسنآ ارسل لي معرف القناة*')
@@ -10161,31 +10173,117 @@ send(msg.chat_id_, msg.id_, amir)
 end,nil)
 end,nil)
 end 
+if text then   
+if database:get(bot_id..'Set:array'..msg.sender_user_id_..':'..msg.chat_id_) == 'true1' then
+local test = database:get(bot_id..'Text:array'..msg.sender_user_id_..':'..msg.chat_id_..'')
+text = text:gsub('"','') 
+text = text:gsub("'",'') 
+text = text:gsub('`','') 
+text = text:gsub('*','') 
+database:sadd(bot_id.."Add:Rd:array:Text"..test..msg.chat_id_,text)  
+_key = {
+{{text="اضغط هنا لانهاء الاضافه",callback_data="EndAddarray"..msg.sender_user_id_}},
+}
+send_inlin_key(msg.chat_id_,' *⌯︙تم حفظ الرد يمكنك ارسال اخر او اكمال العمليه من خلال الزر اسفل ✅*',_key,msg.id_)
+return false  
+end
+end    
+if text and text:match("^(.*)$") then
+if database:get(bot_id.."Set:array:Ssd"..msg.sender_user_id_..":"..msg.chat_id_) == 'dttd' then
+database:del(bot_id.."Set:array:Ssd"..msg.sender_user_id_..":"..msg.chat_id_)
+gery = database:get(bot_id.."Set:array:addpu"..msg.sender_user_id_..":"..msg.chat_id_)
+if not database:sismember(bot_id.."Add:Rd:array:Text"..gery..msg.chat_id_,text) then
+send(msg.chat_id_, msg.id_,' *⌯︙لا يوجد رد متعدد * ')
+return false
+end
+send(msg.chat_id_, msg.id_,' *⌯︙تم حذفه بنجاح .* ')
+database:srem(bot_id.."Add:Rd:array:Text"..gery..msg.chat_id_,text)
+end
+end
+if text and text:match("^(.*)$") then
+if database:get(bot_id.."Set:array:Ssd"..msg.sender_user_id_..":"..msg.chat_id_) == 'delrd' then
+database:del(bot_id.."Set:array:Ssd"..msg.sender_user_id_..":"..msg.chat_id_)
+if not database:sismember(bot_id..'List:array'..msg.chat_id_,text) then
+send(msg.chat_id_, msg.id_,' *⌯︙لا يوجد رد متعدد * ')
+return false
+end
+send(msg.chat_id_, msg.id_,' *⌯︙قم بارسال الرد الذي تريد حذفه منه* ')
+database:set(bot_id.."Set:array:addpu"..msg.sender_user_id_..":"..msg.chat_id_,text)
+database:set(bot_id.."Set:array:Ssd"..msg.sender_user_id_..":"..msg.chat_id_,"dttd")
+return false
+end
+end
+if text == "حذف رد من متعدد" and Manager(msg) then
+send(msg.chat_id_, msg.id_,"*⌯︙ارسل الكلمه الرد الاصليه*")
+database:set(bot_id.."Set:array:Ssd"..msg.sender_user_id_..":"..msg.chat_id_,"delrd")
+return false 
+end
+if text and text:match("^(.*)$") then
+if database:get(bot_id.."Set:array"..msg.sender_user_id_..":"..msg.chat_id_) == 'true' then
+send(msg.chat_id_, msg.id_,' *⌯︙ارسل الرد الذي تريد اضافته*')
+database:set(bot_id..'Set:array'..msg.sender_user_id_..':'..msg.chat_id_,'true1')
+database:set(bot_id..'Text:array'..msg.sender_user_id_..':'..msg.chat_id_, text)
+database:del(bot_id.."Add:Rd:array:Text"..text..msg.chat_id_)   
+database:sadd(bot_id..'List:array'..msg.chat_id_..'', text)
+return false
+end
+end
+if text and text:match("^(.*)$") then
+if database:get(bot_id.."Set:array:rd"..msg.sender_user_id_..":"..msg.chat_id_) == 'delrd' then
+database:del(bot_id.."Set:array:rd"..msg.sender_user_id_..":"..msg.chat_id_)
+send(msg.chat_id_, msg.id_,' *⌯︙تم ازالة الرد المتعدد بنجاح* ')
+database:del(bot_id.."Add:Rd:array:Text"..text..msg.chat_id_)
+database:srem(bot_id..'List:array'..msg.chat_id_, text)
+return false
+end
+end
+if text == "حذف رد متعدد" and Manager(msg) then
+send(msg.chat_id_, msg.id_,"*⌯︙ارسل الكلمه التي تريد حذفها*")
+database:set(bot_id.."Set:array:rd"..msg.sender_user_id_..":"..msg.chat_id_,"delrd")
+return false 
+end
+if text then
+if  database:sismember(bot_id..'List:array'..msg.chat_id_,text) then
+local list = database:smembers(bot_id.."Add:Rd:array:Text"..text..msg.chat_id_)
+quschen = list[math.random(#list)]
+send(msg.chat_id_, msg.id_,quschen)
+end
+end
+if text == ("الردود المتعدده") and Manager(msg) then
+local list = database:smembers(bot_id..'List:array'..msg.chat_id_..'')
+text = " ⌯︙قائمه الردود المتعدده \n*•━━━━━━ 𝗧𝗘 ━━━━━━━•*\n"
+for k,v in pairs(list) do
+text = text..""..k..">> ("..v..") » {رساله}\n"
+end
+if #list == 0 then
+text = " ⌯︙لا يوجد ردود متعدده"
+end
+send(msg.chat_id_, msg.id_,'['..text..']')
+end
+if text == ("مسح الردود المتعدده") and BasicConstructor(msg) and  AddChannel(msg) then
+local list = database:smembers(bot_id..'List:array'..msg.chat_id_)
+for k,v in pairs(list) do
+database:del(bot_id.."Add:Rd:array:Text"..v..msg.chat_id_)   
+database:del(bot_id..'List:array'..msg.chat_id_)
+end
+send(msg.chat_id_, msg.id_," *⌯︙تم مسح الردود المتعدده*")
+end
+if text == "اضف رد متعدد" and Manager(msg) then
+send(msg.chat_id_, msg.id_,"*⌯︙ارسل الكلمه التي تريد اضافتها*")
+database:set(bot_id.."Set:array"..msg.sender_user_id_..":"..msg.chat_id_,true)
+return false 
+end
 if text == 'اطردني' or text == 'طردني' then
 if not database:get(bot_id..'Cick:Me'..msg.chat_id_) then
 if Can_or_NotCan(msg.sender_user_id_, msg.chat_id_) == true then
 send(msg.chat_id_, msg.id_, '\n *⌯︙عذرا لا استطيع طرد ( '..Rutba(msg.sender_user_id_,msg.chat_id_)..' )*')
 return false
 end
-tdcli_function({ID="ChangeChatMemberStatus",chat_id_=msg.chat_id_,user_id_=msg.sender_user_id_,status_={ID="ChatMemberStatusKicked"},},function(arg,data) 
-if (data and data.code_ and data.code_ == 400 and data.message_ == "CHAT_ADMIN_REQUIRED") then 
-send(msg.chat_id_, msg.id_,' *⌯︙ليس لدي صلاحية حظر المستخدمين يرجى تفعيلها !*') 
-return false  
-end
-if (data and data.code_ and data.code_ == 3) then 
-send(msg.chat_id_, msg.id_,' *⌯︙البوت ليس ادمن يرجى ترقيتي !*') 
-return false  
-end
-if data and data.code_ and data.code_ == 400 and data.message_ == "USER_ADMIN_INVALID" then 
-send(msg.chat_id_, msg.id_,' *⌯︙عذرا لا استطيع طرد ادمنية الكروب*') 
-return false  
-end
-if data and data.ID and data.ID == 'Ok' then
-send(msg.chat_id_, msg.id_,' *⌯︙تم طردك من الكروب*') 
-tdcli_function ({ ID = "ChangeChatMemberStatus", chat_id_ = msg.chat_id_, user_id_ = msg.sender_user_id_, status_ = { ID = "ChatMemberStatusLeft" },},function(arg,ban) end,nil)   
+_key = {
+{{text="تأكيد الامر .",callback_data="OkKikedMe"..msg.sender_user_id_},{text="الغاء الامر .",callback_data="noKikedMe"..msg.sender_user_id_}},
+}
+send_inlin_key(msg.chat_id_," *⌯︙قم بتأكيد العمليه الان .*",_key,msg.id_)
 return false
-end
-end,nil)   
 else
 send(msg.chat_id_, msg.id_,' *⌯︙تم تعطيل امر اطردني*') 
 end
@@ -11971,6 +12069,63 @@ local listPhoto = database:smembers(bot_id.."filterphoto"..delallph)
 for k,v in pairs(listPhoto) do  
 database:srem(bot_id.."filterphoto"..delallph,v)  
 end  
+end
+if DAata == 'EndAddarray'..data.sender_user_id_ then  
+if database:get(bot_id..'Set:array'..data.sender_user_id_..':'..Chat_id) == 'true1' then
+database:del(bot_id..'Set:array'..data.sender_user_id_..':'..Chat_id)
+keyboard = {} 
+keyboard.inline_keyboard = {
+{{text = 'sᴏᴜʀᴄʀ ᴛᴇʟᴀɴᴅ',url='http://t.me/TELANDTEAM'}},
+}
+return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(" *⌯︙تم حفظ الردود بنجاح*")..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard)) 
+else
+keyboard = {} 
+keyboard.inline_keyboard = {
+{{text = 'sᴏᴜʀᴄʀ ᴛᴇʟᴀɴᴅ',url='http://t.me/TELANDTEAM'}},
+}
+return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(" *⌯︙تم تنفيذ الامر سابقا*")..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard)) 
+end
+end
+if DAata == 'OkKikedMe'..data.sender_user_id_ then  
+tdcli_function({ID="ChangeChatMemberStatus",chat_id_=Chat_id,user_id_=data.sender_user_id_,status_={ID="ChatMemberStatusKicked"},},function(arg,data) 
+if (data and data.code_ and data.code_ == 400 and data.message_ == "CHAT_ADMIN_REQUIRED") then 
+keyboard = {} 
+keyboard.inline_keyboard = {
+{{text = 'sᴏᴜʀᴄʀ ᴛᴇʟᴀɴᴅ',url='http://t.me/TELANDTEAM'}},
+}
+return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(" *⌯︙ليس لدي صلاحية حظر المستخدمين يرجى تفعيلها !*")..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard)) 
+end
+if (data and data.code_ and data.code_ == 3) then 
+keyboard = {} 
+keyboard.inline_keyboard = {
+{{text = 'sᴏᴜʀᴄʀ ᴛᴇʟᴀɴᴅ',url='http://t.me/TELANDTEAM'}},
+}
+return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(" *⌯︙البوت ليس ادمن يرجى ترقيتي !*")..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard)) 
+end
+if data and data.code_ and data.code_ == 400 and data.message_ == "USER_ADMIN_INVALID" then 
+keyboard = {} 
+keyboard.inline_keyboard = {
+{{text = 'sᴏᴜʀᴄʀ ᴛᴇʟᴀɴᴅ',url='http://t.me/TELANDTEAM'}},
+}
+return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(" *⌯︙عذرا لا استطيع طرد ادمنية الكروب*")..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard)) 
+end
+if data and data.ID and data.ID == 'Ok' then
+keyboard = {} 
+keyboard.inline_keyboard = {
+{{text = 'sᴏᴜʀᴄʀ ᴛᴇʟᴀɴᴅ',url='http://t.me/TELANDTEAM'}},
+}
+return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(" *⌯︙تم الطرد بنجاح*")..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard)) 
+end
+end,nil)   
+end
+if DAata == 'noKikedMe'..data.sender_user_id_ then  
+local Text ="*⌯ تم الغاء الطرد بنجاح .*"
+keyboard = {} 
+keyboard.inline_keyboard = {
+{{text = 'sᴏᴜʀᴄʀ ᴛᴇʟᴀɴᴅ',url='http://t.me/TELANDTEAM'}},
+}
+return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Text)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard)) 
+end
 end
 end
 if data.ID == "UpdateNewMessage" then  -- new msg
