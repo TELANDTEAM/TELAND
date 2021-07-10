@@ -7495,7 +7495,7 @@ database:del(bot_id.."Comd:New"..msg.chat_id_..""..msg.sender_user_id_)
 return false  
 end 
 end
-if text and text:match('رفع (.*)') and tonumber(msg.reply_to_message_id_) > 0 and Mod(msg) and GetChannelMember(msg) then   
+if text and text:match('رفع (.*)') and tonumber(msg.reply_to_message_id_) > 0 and Mod(msg) then   
 local RTPA = text:match('رفع (.*)')
 if database:sismember(bot_id..'Coomds'..msg.chat_id_,RTPA) then
 function by_reply(extra, result, success)   
@@ -7547,7 +7547,7 @@ end
 tdcli_function ({ ID = "GetMessage", chat_id_ = msg.chat_id_, message_id_ = tonumber(msg.reply_to_message_id_) }, by_reply, nil)
 end
 end
-if text and text:match('^رفع (.*) @(.*)') and Mod(msg) and GetChannelMember(msg) then   
+if text and text:match('^رفع (.*) @(.*)') and Mod(msg) then   
 local text1 = {string.match(text, "^(رفع) (.*) @(.*)$")}
 if database:sismember(bot_id..'Coomds'..msg.chat_id_,text1[2]) then
 function py_username(extra, result, success)   
