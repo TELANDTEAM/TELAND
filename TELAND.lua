@@ -3742,7 +3742,7 @@ t = " *⌯︙لا يوجد مطورين*"
 end
 send(msg.chat_id_, msg.id_, t)
 end
-if text == "تاك للمشرفين" and CoSu then
+if text == "تاك للمشرفين" and SudoBotCoSu then
 if database:get(bot_id.."VVVZVV:admin:Time"..msg.chat_id_) then 
 return
 send(msg.chat_id_, msg.id_,"انتظر دقيقه من فضلك")
