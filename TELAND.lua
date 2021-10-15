@@ -4352,7 +4352,7 @@ t = " *⌯︙لا يوجد منشئين*"
 end
 send(msg.chat_id_, msg.id_, t)
 end
-if text ==("المنشئ") then
+if text == "المنشئ" then
 tdcli_function ({ID = "GetChannelMembers",channel_id_ = msg.chat_id_:gsub("-100",""),filter_ = {ID = "ChannelMembersAdministrators"},offset_ = 0,limit_ = 100},function(arg,data) 
 local admins = data.members_
 for i=0 , #admins do
@@ -4360,15 +4360,25 @@ if data.members_[i].status_.ID == "ChatMemberStatusCreator" then
 owner_id = admins[i].user_id_
 tdcli_function ({ID = "GetUser",user_id_ = owner_id},function(arg,b) 
 if b.first_name_ == false then
-send(msg.chat_id_, msg.id_," *⌯︙حساب المنشئ محذوف*")
+send(msg.chat_id_, msg.id_," *⋄︙حساب المنشئ محذوف*")
 return false  
 end
-local UserName = (b.username_ or "vvvmh")
-send(msg.chat_id_, msg.id_," ⌯︙منشئ الكروب » ["..b.first_name_.."](T.me/"..UserName..")")  
+tdcli_function ({ID = "GetUserProfilePhotos",user_id_ = owner_id,offset_ = 0,limit_ = 1},function(arg,getpro) 
+if getpro.photos_[0] then
+Name = '*المنشئ ⇠* ['..b.first_name_..'](tg://user?id='..b.id_..')\n'
+Name = Name..'*البايو ⇠* ['..getbio(owner_id)..']\n'
+keyboard = {}
+keyboard.inline_keyboard = {{{text = ''..b.first_name_..'', url = "https://t.me/"..b.username_..""}},}
+local msg_id = msg.id_/2097152/0.5
+https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id='..msg.chat_id_..'&caption='..URL.escape(Name)..'&photo='..getpro.photos_[0].sizes_[1].photo_.persistent_id_..'&reply_to_message_id='..msg_id..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard)) 
+else
+send(msg.chat_id_,msg.id_,Name)
+end
+end,nil)   
 end,nil)   
 end
 end
-end,nil)   
+end,nil)  
 end
 if text == "رفع منشئ" and msg.reply_to_message_id_ and BasicConstructor(msg) and GetChannelMember(msg) then  
 function start_function(extra, result, success)
@@ -7014,15 +7024,25 @@ database:del(bot_id.."Link_Group:status"..msg.chat_id_)
 send(msg.chat_id_, msg.id_," *⌯︙تم تعطيل الرابط*") 
 return false end
 end
-if text == 'المطور' or text == 'مطور' then
-local TEXT_SUDO = database:get(bot_id..'TEXT_SUDO')
+if text == "المطور" or text == "مطور" then
+local TEXT_SUD = database:get(bot_id..'TELAND:TEXT_SUDO')
 if TEXT_SUDO then 
 send(msg.chat_id_, msg.id_,TEXT_SUDO)
 else
-tdcli_function ({ID = "GetUser",user_id_ = SUDO},function(arg,result) 
-local Name = '['..result.first_name_..'](tg://user?id='..result.id_..')'
-sendText(msg.chat_id_,Name,msg.id_/2097152/0.5,'md')
-end,nil)
+tdcli_function ({ID = "GetUser",user_id_ = SUDO,},function(arg,result) 
+tdcli_function ({ID = "GetUserProfilePhotos",user_id_ = SUDO,offset_ = 0,limit_ = 1},function(arg,getpro) 
+if getpro.photos_[0] then
+Name = '*المطور ~⪼* ['..result.first_name_..'](tg://user?id='..result.id_..')\n'
+Name = Name..'*البايو ~⪼* ['..getbio(SUDO)..']\n'
+keyboard = {}
+keyboard.inline_keyboard = {{{text = ''..result.first_name_..'', url = "https://t.me/"..result.username_..""}},}
+local msg_id = msg.id_/2097152/0.5
+https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id='..msg.chat_id_..'&caption='..URL.escape(Name)..'&photo='..getpro.photos_[0].sizes_[1].photo_.persistent_id_..'&reply_to_message_id='..msg_id..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard)) 
+else
+send(msg.chat_id_, msg.id_,Name,1, 'md')
+end
+end,nil)   
+end,nil)   
 end
 end
 if text == "تفعيل صورتي" or text == 'تفعيل الصوره' then
@@ -9562,10 +9582,11 @@ Text = [[
 ]]
 keyboard = {} 
 keyboard.inline_keyboard = {
-{{text = '⓵', callback_data="/help1"},{text = '⓶', callback_data="/help2"},{text = '⓷', callback_data="/help3"}},
-{{text = '⓸', callback_data="/help4"},{text = '⓹', callback_data="/help5"}},
-{{text = '⓺', callback_data="/help6"},{text = '⓻', callback_data="/help7"},{text = '⓼', callback_data="/help8"}},
-{{text = '⓽', callback_data="/help9"},{text = '⓵⓪', callback_data="/help10"}},
+{{text = 'اوامر الحمايه', callback_data="/help1"},{text = 'اوامر الادمنيه', callback_data="/help2"}},
+{{text = 'اوامر الوضع', callback_data="/help3"},{text = 'اوامر المسح', callback_data="/help4"}},
+{{text = 'اوامر المنشئين', callback_data="/help5"},{text = 'اوامر المجموعه', callback_data="/help6"}},
+{{text = 'اوامر التحشيش', callback_data="/help7"},{text = 'اوامر المطورين', callback_data="/help8"}},
+{{text = 'اوامر مطور الاساسي', callback_data="/help9"},{text = 'اوامر العضو', callback_data="/help10"}},
 {{text = '𝑇𝐸𝐿𝐴𝑁𝐷 𝑇𝐸𝐴𝑀', url="t.me/TELANDTEAM"}},
 }
 local msg_id = msg.id_/2097152/0.5
@@ -9777,6 +9798,21 @@ https.request("https://api.telegram.org/bot"..token..'/sendVoice?chat_id=' .. ms
 end
 end
 end
+if text == "فويز" then
+data,res = https.request('https://vvvzvv.ml/Foes/asasur.php')
+if res == 200 then
+audios = json:decode(data)
+if audios.Info == true then
+local Text ='*⋄︙تم اختيار البصمه الصوتيه لك*'
+keyboard = {} 
+keyboard.inline_keyboard = {
+{{text = '𝑇𝐸𝐿𝐴𝑁𝐷 𝑇𝐸𝐴𝑀',url="t.me/TELANDTEAM"}},
+}
+local msg_id = msg.id_/2097152/0.5
+https.request("https://api.telegram.org/bot"..token..'/sendVoice?chat_id=' .. msg.chat_id_ .. '&voice='..URL.escape(audios.info)..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
+end
+end
+end
 if text == "شنو رئيك بهذا" or text == "شنو رئيك بهذ" then
 if not database:get(bot_id..'lock:add'..msg.chat_id_) then
 local texting = {"ادب سسز يباوع علي بنات ??🥺"," مو خوش ولد 😶","زاحف وما احبه 😾😹"}
@@ -9977,10 +10013,11 @@ local Teext =[[
 ]]
 keyboard = {} 
 keyboard.inline_keyboard = {
-{{text = '⓵', callback_data="/help1"},{text = '⓶', callback_data="/help2"},{text = '⓷', callback_data="/help3"}},
-{{text = '⓸', callback_data="/help4"},{text = '⓹', callback_data="/help5"}},
-{{text = '⓺', callback_data="/help6"},{text = '⓻', callback_data="/help7"},{text = '⓼', callback_data="/help8"}},
-{{text = '⓽', callback_data="/help9"},{text = '⓵⓪', callback_data="/help10"}},
+{{text = 'اوامر الحمايه', callback_data="/help1"},{text = 'اوامر الادمنيه', callback_data="/help2"}},
+{{text = 'اوامر الوضع', callback_data="/help3"},{text = 'اوامر المسح', callback_data="/help4"}},
+{{text = 'اوامر المنشئين', callback_data="/help5"},{text = 'اوامر المجموعه', callback_data="/help6"}},
+{{text = 'اوامر التحشيش', callback_data="/help7"},{text = 'اوامر المطورين', callback_data="/help8"}},
+{{text = 'اوامر مطور الاساسي', callback_data="/help9"},{text = 'اوامر العضو', callback_data="/help10"}},
 {{text = 'الاوامر الرئيسيه', callback_data="/help"}},
 {{text = '-𝑇𝐸𝐿𝐴𝑁𝐷 𝑇𝐸𝐴𝑀', url="t.me/TELANDTEAM"}},
 }
@@ -10035,10 +10072,11 @@ local Teext =[[
 ]]
 keyboard = {} 
 keyboard.inline_keyboard = {
-{{text = '⓵', callback_data="/help1"},{text = '⓶', callback_data="/help2"},{text = '⓷', callback_data="/help3"}},
-{{text = '⓸', callback_data="/help4"},{text = '⓹', callback_data="/help5"}},
-{{text = '⓺', callback_data="/help6"},{text = '⓻', callback_data="/help7"},{text = '⓼', callback_data="/help8"}},
-{{text = '⓽', callback_data="/help9"},{text = '⓵⓪', callback_data="/help10"}},
+{{text = 'اوامر الحمايه', callback_data="/help1"},{text = 'اوامر الادمنيه', callback_data="/help2"}},
+{{text = 'اوامر الوضع', callback_data="/help3"},{text = 'اوامر المسح', callback_data="/help4"}},
+{{text = 'اوامر المنشئين', callback_data="/help5"},{text = 'اوامر المجموعه', callback_data="/help6"}},
+{{text = 'اوامر التحشيش', callback_data="/help7"},{text = 'اوامر المطورين', callback_data="/help8"}},
+{{text = 'اوامر مطور الاساسي', callback_data="/help9"},{text = 'اوامر العضو', callback_data="/help10"}},
 {{text = 'الاوامر الرئيسيه', callback_data="/help"}},
 {{text = '-𝑇𝐸𝐿𝐴𝑁𝐷 𝑇𝐸𝐴𝑀', url="t.me/TELANDTEAM"}},
 }
@@ -10072,10 +10110,11 @@ local Teext =[[
 ]]
 keyboard = {} 
 keyboard.inline_keyboard = {
-{{text = '⓵', callback_data="/help1"},{text = '⓶', callback_data="/help2"},{text = '⓷', callback_data="/help3"}},
-{{text = '⓸', callback_data="/help4"},{text = '⓹', callback_data="/help5"}},
-{{text = '⓺', callback_data="/help6"},{text = '⓻', callback_data="/help7"},{text = '⓼', callback_data="/help8"}},
-{{text = '⓽', callback_data="/help9"},{text = '⓵⓪', callback_data="/help10"}},
+{{text = 'اوامر الحمايه', callback_data="/help1"},{text = 'اوامر الادمنيه', callback_data="/help2"}},
+{{text = 'اوامر الوضع', callback_data="/help3"},{text = 'اوامر المسح', callback_data="/help4"}},
+{{text = 'اوامر المنشئين', callback_data="/help5"},{text = 'اوامر المجموعه', callback_data="/help6"}},
+{{text = 'اوامر التحشيش', callback_data="/help7"},{text = 'اوامر المطورين', callback_data="/help8"}},
+{{text = 'اوامر مطور الاساسي', callback_data="/help9"},{text = 'اوامر العضو', callback_data="/help10"}},
 {{text = 'الاوامر الرئيسيه', callback_data="/help"}},
 {{text = '-𝑇𝐸𝐿𝐴𝑁𝐷 𝑇𝐸𝐴𝑀', url="t.me/TELANDTEAM"}},
 }
@@ -10119,10 +10158,11 @@ local Teext =[[
 ]]
 keyboard = {} 
 keyboard.inline_keyboard = {
-{{text = '⓵', callback_data="/help1"},{text = '⓶', callback_data="/help2"},{text = '⓷', callback_data="/help3"}},
-{{text = '⓸', callback_data="/help4"},{text = '⓹', callback_data="/help5"}},
-{{text = '⓺', callback_data="/help6"},{text = '⓻', callback_data="/help7"},{text = '⓼', callback_data="/help8"}},
-{{text = '⓽', callback_data="/help9"},{text = '⓵⓪', callback_data="/help10"}},
+{{text = 'اوامر الحمايه', callback_data="/help1"},{text = 'اوامر الادمنيه', callback_data="/help2"}},
+{{text = 'اوامر الوضع', callback_data="/help3"},{text = 'اوامر المسح', callback_data="/help4"}},
+{{text = 'اوامر المنشئين', callback_data="/help5"},{text = 'اوامر المجموعه', callback_data="/help6"}},
+{{text = 'اوامر التحشيش', callback_data="/help7"},{text = 'اوامر المطورين', callback_data="/help8"}},
+{{text = 'اوامر مطور الاساسي', callback_data="/help9"},{text = 'اوامر العضو', callback_data="/help10"}},
 {{text = 'الاوامر الرئيسيه', callback_data="/help"}},
 {{text = '-𝑇𝐸𝐿𝐴𝑁𝐷 𝑇𝐸𝐴𝑀', url="t.me/TELANDTEAM"}},
 }
@@ -10168,10 +10208,11 @@ local Teext =[[
 ]]
 keyboard = {} 
 keyboard.inline_keyboard = {
-{{text = '⓵', callback_data="/help1"},{text = '⓶', callback_data="/help2"},{text = '⓷', callback_data="/help3"}},
-{{text = '⓸', callback_data="/help4"},{text = '⓹', callback_data="/help5"}},
-{{text = '⓺', callback_data="/help6"},{text = '⓻', callback_data="/help7"},{text = '⓼', callback_data="/help8"}},
-{{text = '⓽', callback_data="/help9"},{text = '⓵⓪', callback_data="/help10"}},
+{{text = 'اوامر الحمايه', callback_data="/help1"},{text = 'اوامر الادمنيه', callback_data="/help2"}},
+{{text = 'اوامر الوضع', callback_data="/help3"},{text = 'اوامر المسح', callback_data="/help4"}},
+{{text = 'اوامر المنشئين', callback_data="/help5"},{text = 'اوامر المجموعه', callback_data="/help6"}},
+{{text = 'اوامر التحشيش', callback_data="/help7"},{text = 'اوامر المطورين', callback_data="/help8"}},
+{{text = 'اوامر مطور الاساسي', callback_data="/help9"},{text = 'اوامر العضو', callback_data="/help10"}},
 {{text = 'الاوامر الرئيسيه', callback_data="/help"}},
 {{text = '-𝑇𝐸𝐿𝐴𝑁𝐷 𝑇𝐸𝐴𝑀', url="t.me/TELANDTEAM"}},
 }
@@ -10236,10 +10277,11 @@ local Teext =[[
 ]]
 keyboard = {} 
 keyboard.inline_keyboard = {
-{{text = '⓵', callback_data="/help1"},{text = '⓶', callback_data="/help2"},{text = '⓷', callback_data="/help3"}},
-{{text = '⓸', callback_data="/help4"},{text = '⓹', callback_data="/help5"}},
-{{text = '⓺', callback_data="/help6"},{text = '⓻', callback_data="/help7"},{text = '⓼', callback_data="/help8"}},
-{{text = '⓽', callback_data="/help9"},{text = '⓵⓪', callback_data="/help10"}},
+{{text = 'اوامر الحمايه', callback_data="/help1"},{text = 'اوامر الادمنيه', callback_data="/help2"}},
+{{text = 'اوامر الوضع', callback_data="/help3"},{text = 'اوامر المسح', callback_data="/help4"}},
+{{text = 'اوامر المنشئين', callback_data="/help5"},{text = 'اوامر المجموعه', callback_data="/help6"}},
+{{text = 'اوامر التحشيش', callback_data="/help7"},{text = 'اوامر المطورين', callback_data="/help8"}},
+{{text = 'اوامر مطور الاساسي', callback_data="/help9"},{text = 'اوامر العضو', callback_data="/help10"}},
 {{text = 'الاوامر الرئيسيه', callback_data="/help"}},
 {{text = '-𝑇𝐸𝐿𝐴𝑁𝐷 𝑇𝐸𝐴𝑀', url="t.me/TELANDTEAM"}},
 }
@@ -10293,10 +10335,11 @@ local Teext =[[
 ]]
 keyboard = {} 
 keyboard.inline_keyboard = {
-{{text = '⓵', callback_data="/help1"},{text = '⓶', callback_data="/help2"},{text = '⓷', callback_data="/help3"}},
-{{text = '⓸', callback_data="/help4"},{text = '⓹', callback_data="/help5"}},
-{{text = '⓺', callback_data="/help6"},{text = '⓻', callback_data="/help7"},{text = '⓼', callback_data="/help8"}},
-{{text = '⓽', callback_data="/help9"},{text = '⓵⓪', callback_data="/help10"}},
+{{text = 'اوامر الحمايه', callback_data="/help1"},{text = 'اوامر الادمنيه', callback_data="/help2"}},
+{{text = 'اوامر الوضع', callback_data="/help3"},{text = 'اوامر المسح', callback_data="/help4"}},
+{{text = 'اوامر المنشئين', callback_data="/help5"},{text = 'اوامر المجموعه', callback_data="/help6"}},
+{{text = 'اوامر التحشيش', callback_data="/help7"},{text = 'اوامر المطورين', callback_data="/help8"}},
+{{text = 'اوامر مطور الاساسي', callback_data="/help9"},{text = 'اوامر العضو', callback_data="/help10"}},
 {{text = 'الاوامر الرئيسيه', callback_data="/help"}},
 {{text = '-𝑇𝐸𝐿𝐴𝑁𝐷 𝑇𝐸𝐴𝑀', url="t.me/TELANDTEAM"}},
 }
@@ -10326,10 +10369,11 @@ local Teext =[[
 ]]
 keyboard = {} 
 keyboard.inline_keyboard = {
-{{text = '⓵', callback_data="/help1"},{text = '⓶', callback_data="/help2"},{text = '⓷', callback_data="/help3"}},
-{{text = '⓸', callback_data="/help4"},{text = '⓹', callback_data="/help5"}},
-{{text = '⓺', callback_data="/help6"},{text = '⓻', callback_data="/help7"},{text = '⓼', callback_data="/help8"}},
-{{text = '⓽', callback_data="/help9"},{text = '⓵⓪', callback_data="/help10"}},
+{{text = 'اوامر الحمايه', callback_data="/help1"},{text = 'اوامر الادمنيه', callback_data="/help2"}},
+{{text = 'اوامر الوضع', callback_data="/help3"},{text = 'اوامر المسح', callback_data="/help4"}},
+{{text = 'اوامر المنشئين', callback_data="/help5"},{text = 'اوامر المجموعه', callback_data="/help6"}},
+{{text = 'اوامر التحشيش', callback_data="/help7"},{text = 'اوامر المطورين', callback_data="/help8"}},
+{{text = 'اوامر مطور الاساسي', callback_data="/help9"},{text = 'اوامر العضو', callback_data="/help10"}},
 {{text = 'الاوامر الرئيسيه', callback_data="/help"}},
 {{text = '-𝑇𝐸𝐿𝐴𝑁𝐷 𝑇𝐸𝐴𝑀', url="t.me/TELANDTEAM"}},
 }
@@ -10412,10 +10456,11 @@ local Teext =[[
 ]]
 keyboard = {} 
 keyboard.inline_keyboard = {
-{{text = '⓵', callback_data="/help1"},{text = '⓶', callback_data="/help2"},{text = '⓷', callback_data="/help3"}},
-{{text = '⓸', callback_data="/help4"},{text = '⓹', callback_data="/help5"}},
-{{text = '⓺', callback_data="/help6"},{text = '⓻', callback_data="/help7"},{text = '⓼', callback_data="/help8"}},
-{{text = '⓽', callback_data="/help9"},{text = '⓵⓪', callback_data="/help10"}},
+{{text = 'اوامر الحمايه', callback_data="/help1"},{text = 'اوامر الادمنيه', callback_data="/help2"}},
+{{text = 'اوامر الوضع', callback_data="/help3"},{text = 'اوامر المسح', callback_data="/help4"}},
+{{text = 'اوامر المنشئين', callback_data="/help5"},{text = 'اوامر المجموعه', callback_data="/help6"}},
+{{text = 'اوامر التحشيش', callback_data="/help7"},{text = 'اوامر المطورين', callback_data="/help8"}},
+{{text = 'اوامر مطور الاساسي', callback_data="/help9"},{text = 'اوامر العضو', callback_data="/help10"}},
 {{text = 'الاوامر الرئيسيه', callback_data="/help"}},
 {{text = '-𝑇𝐸𝐿𝐴𝑁𝐷 𝑇𝐸𝐴𝑀', url="t.me/TELANDTEAM"}},
 }
@@ -10459,10 +10504,11 @@ local Teext =[[
 ]]
 keyboard = {} 
 keyboard.inline_keyboard = {
-{{text = '⓵', callback_data="/help1"},{text = '⓶', callback_data="/help2"},{text = '⓷', callback_data="/help3"}},
-{{text = '⓸', callback_data="/help4"},{text = '⓹', callback_data="/help5"}},
-{{text = '⓺', callback_data="/help6"},{text = '⓻', callback_data="/help7"},{text = '⓼', callback_data="/help8"}},
-{{text = '⓽', callback_data="/help9"},{text = '⓵⓪', callback_data="/help10"}},
+{{text = 'اوامر الحمايه', callback_data="/help1"},{text = 'اوامر الادمنيه', callback_data="/help2"}},
+{{text = 'اوامر الوضع', callback_data="/help3"},{text = 'اوامر المسح', callback_data="/help4"}},
+{{text = 'اوامر المنشئين', callback_data="/help5"},{text = 'اوامر المجموعه', callback_data="/help6"}},
+{{text = 'اوامر التحشيش', callback_data="/help7"},{text = 'اوامر المطورين', callback_data="/help8"}},
+{{text = 'اوامر مطور الاساسي', callback_data="/help9"},{text = 'اوامر العضو', callback_data="/help10"}},
 {{text = 'الاوامر الرئيسيه', callback_data="/help"}},
 {{text = '-𝑇𝐸𝐿𝐴𝑁𝐷 𝑇𝐸𝐴𝑀', url="t.me/TELANDTEAM"}},
 }
@@ -10492,10 +10538,11 @@ local Teext =[[
 ]]
 keyboard = {} 
 keyboard.inline_keyboard = {
-{{text = '⓵', callback_data="/help1"},{text = '⓶', callback_data="/help2"},{text = '⓷', callback_data="/help3"}},
-{{text = '⓸', callback_data="/help4"},{text = '⓹', callback_data="/help5"}},
-{{text = '⓺', callback_data="/help6"},{text = '⓻', callback_data="/help7"},{text = '⓼', callback_data="/help8"}},
-{{text = '⓽', callback_data="/help9"},{text = '⓵⓪', callback_data="/help10"}},
+{{text = 'اوامر الحمايه', callback_data="/help1"},{text = 'اوامر الادمنيه', callback_data="/help2"}},
+{{text = 'اوامر الوضع', callback_data="/help3"},{text = 'اوامر المسح', callback_data="/help4"}},
+{{text = 'اوامر المنشئين', callback_data="/help5"},{text = 'اوامر المجموعه', callback_data="/help6"}},
+{{text = 'اوامر التحشيش', callback_data="/help7"},{text = 'اوامر المطورين', callback_data="/help8"}},
+{{text = 'اوامر مطور الاساسي', callback_data="/help9"},{text = 'اوامر العضو', callback_data="/help10"}},
 {{text = '𝑇𝐸𝐿𝐴𝑁𝐷 𝑇𝐸𝐴𝑀', url="t.me/TELANDTEAM"}},
 }
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Teext)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard)) 
