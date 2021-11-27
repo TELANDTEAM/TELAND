@@ -2634,14 +2634,11 @@ if data.Ch_Member.info ~= true then
 send(msg.chat_id_,msg.id_,'⌯︙شترك في قناة السورس اولآ @TELANDTEAM .')
 return false 
 end
-Text = [[
-Welcome To Source
-᥀︙[TELAND TEAM](https://t.me/TELANDTEAM)
-]]
+Text = "ᴡᴇʟᴄᴏᴍᴇ ᴛᴏ sᴏᴜʀᴄʀ ᴛᴇʟᴀɴᴅ\n\n[⌯  ᴛᴇʟᴀɴᴅ ᴄʜᴀɴɴᴇʟ](http://t.me/TELANDTEAM)\n\n[⌯  ɪɴғᴏ sᴏᴜʀᴄᴇ](http://t.me/vvvmh)\n\n[⌯  ᴛᴇʟᴀɴᴅ ᴅᴇᴠᴇʟᴏᴘᴇʀ](http://t.me/IMMHH)\n\n[⌯  ʙᴏᴛ ᴛᴇʟᴀɴᴅ](http://t.me/Tilllandbot)"
 keyboard = {} 
 keyboard.inline_keyboard = {
-{{text = '᥀ Source Channel',url="https://t.me/TELANDTEAM"}},
-{{text = 'مبرمبج السورس ᥀',url="t.me/IMMHH"},{text = '᥀ Tws Bot',url="https://t.me/Tilllandbot"}}
+{{text = '⌯ sᴏᴜʀᴄʀ ᴛᴇʟᴀɴᴅ',url="t.me/TELANDTEAM/3"}},
+}
 local msg_id = msg.id_/2097152/0.5
 https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/TELANDTEAM&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
 end
