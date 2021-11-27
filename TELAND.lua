@@ -2636,12 +2636,12 @@ return false
 end
 Text = [[
 Welcome To Source
-⌯︙[TELAND TEAM](https://t.me/TELANDTEAM)
+᥀︙[TELAND TEAM](https://t.me/TELANDTEAM)
 ]]
 keyboard = {} 
 keyboard.inline_keyboard = {
-{{text = '⌯ Source Channel',url="https://t.me/TELANDTEAM"}},
-{{text = 'مبرمبج السورس ⌯',url="t.me/IMMHH"},{text = '⌯ Tws Bot',url="https://t.me/Tilllandbot"}}
+{{text = '᥀ Source Channel',url="https://t.me/TELANDTEAM"}},
+{{text = 'مبرمبج السورس ᥀',url="t.me/IMMHH"},{text = '᥀ Tws Bot',url="https://t.me/Tilllandbot"}}
 local msg_id = msg.id_/2097152/0.5
 https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/TELANDTEAM&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
 end
@@ -2731,25 +2731,7 @@ if text == "ترتيب الاوامر" and Constructor(msg) then
  database:sadd(bot_id.."List:Cmd:Group:New"..msg.chat_id_,"حذ")
  database:set(bot_id.."Set:Cmd:Group:New1"..msg.chat_id_..":ت","تثبيت")
  database:sadd(bot_id.."List:Cmd:Group:New"..msg.chat_id_,"ت")
- database:set(bot_id.."Set:Cmd:Group:New1"..msg.chat_id_..":مط","رفع مطور")
- database:sadd(bot_id.."List:Cmd:Group:New"..msg.chat_id_,"مط")
- database:set(bot_id.."Set:Cmd:Group:New1"..msg.chat_id_..":ثانوي","رفع مطور ثانوي")
- database:sadd(bot_id.."List:Cmd:Group:New"..msg.chat_id_,"ثانوي")
- database:set(bot_id.."Set:Cmd:Group:New1"..msg.chat_id_..":ر","الرابط")
- database:sadd(bot_id.."List:Cmd:Group:New"..msg.chat_id_,"ر")
- database:set(bot_id.."Set:Cmd:Group:New1"..msg.chat_id_..":رر","ردود المدير")
- database:sadd(bot_id.."List:Cmd:Group:New"..msg.chat_id_,"ر")
- database:set(bot_id.."Set:Cmd:Group:New1"..msg.chat_id_.."،،","مسح المكتومين")
- database:sadd(bot_id.."List:Cmd:Group:New"..msg.chat_id_,"،،")
- database:set(bot_id.."Set:Cmd:Group:New1"..msg.chat_id_..":سح","مسح سحكاتي")
- database:sadd(bot_id.."List:Cmd:Group:New"..msg.chat_id_,"سح")
- database:set(bot_id.."Set:Cmd:Group:New1"..msg.chat_id_..":رس","مسح رسائلي")
- database:sadd(bot_id.."List:Cmd:Group:New"..msg.chat_id_,"رس")
- database:set(bot_id.."Set:Cmd:Group:New1"..msg.chat_id_..":غ","غنيلي")
- database:sadd(bot_id.."List:Cmd:Group:New"..msg.chat_id_,"غ")
- database:set(bot_id.."Set:Cmd:Group:New1"..msg.chat_id_..":#","مسح قائمه العام")
- database:sadd(bot_id.."List:Cmd:Group:New"..msg.chat_id_,"#")
- send(msg.chat_id_, msg.id_,"*⌯︙تم ترتيب الاوامر بالشكل التالي*\n*⌯︙ايدي - ا .*\n*⌯︙مميز - م .\n⌯︙ادمن - اد .*\n*⌯︙مدير - مد . \n⌯︙منشى - من .*\n*⌯︙المنشئ الاساسي - اس .*\n*⌯︙تعطيل الايدي بالصوره - تعط .*\n*⌯︙تفعيل الايدي بالصوره - تفع .*\n*⌯︙تنزيل الكل - تك .*\n*⌯︙اضف رد - رد .*\n*⌯︙حذف رد - حذ .*\n*⌯︙تثبيت - ت .*\n*⌯︙رفع مطور - مط*\n*⌯︙رفع مطور ثانوي - ثانوي*\n*⌯︙الرابط - ر*\n*⌯︙ردود المدير - رر*\n*⌯︙مسح المكتومين -،،*\n*⌯︙اضف رد - رد*\n*⌯︙مسح سحكاتي - سح*\n*⌯︙مسح رسائلي - رس*\n*⌯︙غنيلي - غ*\n*⌯︙مسح قائمه العام - #*")
+ send(msg.chat_id_, msg.id_,"*⌯︙تم ترتيب الاوامر بالشكل التالي*\n*⌯︙ايدي - ا .*\n*⌯︙مميز - م .\n⌯︙ادمن - اد .*\n*⌯︙مدير - مد . \n⌯︙منشى - من .*\n*⌯︙المنشئ الاساسي - اس .*\n*⌯︙تعطيل الايدي بالصوره - تعط .*\n*⌯︙تفعيل الايدي بالصوره - تفع .*\n*⌯︙تنزيل الكل - تك .*\n*⌯︙اضف رد - رد .*\n*⌯︙حذف رد - حذ .*\n*⌯︙تثبيت - ت .*")
  end
 if text == 'اضف امر' and Constructor(msg) and GetChannelMember(msg) then  
 database:set(bot_id.."Set:Cmd:Group"..msg.chat_id_..':'..msg.sender_user_id_,'true') 
@@ -9805,7 +9787,7 @@ end
 send(msg.chat_id_, msg.id_,"⌯︙تم مسح الميديا بنجاح")
 end
 if text == "غنيلي" and not database:get(bot_id.."sing:for:me"..msg.chat_id_) then
-data,res = https.request('https://vvvzvv.ml/Foes/asasur.php')
+data,res = https.request('https://vvvzvv.ml/amirVois/Teland.php')
 if res == 200 then
 audios = json:decode(data)
 if audios.Info == true then
